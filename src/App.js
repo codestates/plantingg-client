@@ -6,10 +6,10 @@ import Footer from './components/Footer'
 
 class App extends Component {
   state = {
-
   }
 
   handleClick = () => { }
+
 
   render() {
     return (

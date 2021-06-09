@@ -4,7 +4,7 @@ class SignIn extends Component {
   render() {
     return (
       <div>
-        sign-in madal
+        로그인 모달창
       </div>
     );
   }
