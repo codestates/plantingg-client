@@ -18,11 +18,9 @@
   cursor : pointer;
 }
 
-.buttons {
-  margin-right : 1rem;
-}
 
-.buttons>button {
+.nav-signin,
+.nav-signup {
   background-color: #079992;
   border : none;
   padding : .5rem;
@@ -31,8 +29,13 @@
   border-radius: 15px;
   box-shadow : 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   cursor: pointer;
-  
 }
 .nav-signin {
   margin-right : .3rem;
+}
+
+.g-logo {
+  width : 15px;
+  height : 15px;
+  margin-right : 5px;
 }
