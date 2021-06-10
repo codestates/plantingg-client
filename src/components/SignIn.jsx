@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import SignUp from './SignUp';
 import './Modal.css';
 import google from './image/g.png';
+import Mainpage from '../pages/Mainpage'
 import axios from 'axios';
 
 function SignIn({ openModal, closeModal, isModalOn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [goToSignup, setGoToSignup] = useState(false);
+  const [signupModalOn, setSignupModalOn] = useState(false);
 
   function handlePassword(e) {
     setEmail(e.target.value);
@@ -17,31 +20,34 @@ function SignIn({ openModal, closeModal, isModalOn }) {
     setPassword(e.target.value);
   }
 
-  // function handleLogin() {
-  //   if (!email || !password) {
-  //     setErrorMessage('이메일, 비밀번호를 입력하세요')
-  //   }
+  function handleSignupModal() {
+    setSignupModalOn(true);
+  }
 
-  //   if (email && password) {
-  //     axios
-  //       .post('https://localhost:3000/signin',
+  function handleSwitchToSignUp(e) {
+    setGoToSignup(true)
+    e.preventDefault()
+    console.log('회원가입으로 이동')
+  }
+
+  // [ 로그인 서버연결 부분 ]
+  // function handleSignin() {
+  //   if (!email || !password) {
+  //     setErrorMessage('이메일이나 비밀번호를 확인하세요.')
+  //     return;
+  //   }
+  //   else {
+  //     setErrorMessage('')
+  //     return axios
+  //       .post('https://plantingg.com/user/signin',
   //         { email: email, password: password },
   //         { 'Content-Type': 'application/json', withCredentials: true })
-  //       .then((res) => {
-  //         this.props.handleResponseSuccess(true);
-  //         return axios.get('https://localhost:3000/userinfo', {
-  //           'Content-Type': 'application/json',
-  //           withCredentials: true
-  //         })
+  //       .then(() => {
+  //         alert('로그인 되었습니다.')
   //       })
-  //       .then((res) => {
-  //         let { mobile, email, username } = res.data;
-  //         this.props.handleUserInfo({
-  //           username, mobile, email
-  //         })
-  //         this.props.history.push('/')
+  //       .catch(err => {
+  //         console.log(err)
   //       })
-  //       .catch((err) => alert(err));
   //   }
   // }
 
@@ -56,7 +62,7 @@ function SignIn({ openModal, closeModal, isModalOn }) {
             className="modal-input"
             placeholder="Email"
             onChange={handleEmail}
-            type="text"
+            type="email"
           />
           <input
             className="modal-input"
@@ -66,13 +72,25 @@ function SignIn({ openModal, closeModal, isModalOn }) {
           />
 
           <button className="signin-btn btn">로그인</button>
+          {/* 정상적으로 로그인처리가 된 경우 Mainpage로 이동 */}
+          {/* 정상적으로 로그인처리가 된 경우 Nav button이 logout으로 전환 */}
+
+          {/* {errorMessage ? <div>{errorMessage}</div> : <Mainpage />} */}
+
           <button className="signin-social btn">
             <img className="g-logo" src={google} />
              구글계정으로 로그인</button>
-          <a className="signin-signup" href="/signup">회원가입 </a>
+          <a
+            className="signin-signup"
+            onClick={handleSwitchToSignUp}
+            href="/signup">
+            회원가입 </a>
+          {goToSignup && (<SignUp
+
+          />)}
+
 
         </form>
-        {/* close 버튼 눌렀을 때 맨 위 className에서 show-modal을 없애주면 됨 */}
         <button onClick={closeModal} className="close">닫기</button>
 
       </div>
@@ -83,8 +101,3 @@ function SignIn({ openModal, closeModal, isModalOn }) {
 
 export default SignIn;
 
-{/* <button
-className="nav-signin"
-onClick={this.handleModalOn}
->로그인 모달창
-</button> */}

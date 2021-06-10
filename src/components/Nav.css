@@ -13,25 +13,28 @@
 }
 
 .nav-logo {
-  width : 7rem;
-  margin : 0;
+  width : 3rem;
+  margin : 1.3rem;
   cursor : pointer;
 }
 
 
-.nav-signin,
-.nav-signup {
+.nav-btn {
   background-color: #079992;
   border : none;
-  padding : .5rem;
+  padding : .5rem 1rem;
   color : white;
   font-weight: 600;
   border-radius: 15px;
   box-shadow : 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   cursor: pointer;
+  margin : 0 5px;
+  
 }
-.nav-signin {
-  margin-right : .3rem;
+
+.nav-btn:hover {
+  background-color: whitesmoke;
+  color : seagreen;
 }
 
 .g-logo {
