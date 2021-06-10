@@ -5,6 +5,7 @@
 //myplant 업데이트 기능
 //api 에 plantlist get 하는게 없다.
 import UpdateMypage from './UpdateMypage';
+import UpdatePlant from './UpdatePlant'
 import axios from 'axios'
 import React from 'react'
 axios.defaults.withCredentials = true;
@@ -22,7 +23,7 @@ class Mypage extends React.Component {
         errorMessage:""
       }
   this.updatemyplant = this.updatemyplant.bind(this)
-  this.setmode = this.setmode.bind(this)
+  this.setprofilemode = this.setprofilemode.bind(this)
 //   this.onChangeHandler = this.onChangeHandler.bind(this)
       }
 //   onChangeHandler = () => {
@@ -30,13 +31,21 @@ class Mypage extends React.Component {
 //           [event.target.name] : event.target.value
 //     })
 
-setmode = () =>{ //프로필 업데이트 버튼이 눌리면 상태 변환
+setprofilemode = () =>{ //프로필 업데이트 버튼이 눌리면 상태 변환
   this.setState({
     mode:'update'
   })
 }
 
 updatemyplant = () => {//컴포넌트 따로 빼야할듯
+
+const setplantupdatemode = () =>{
+      this.setState({
+            mode:'plantupdate'
+      })
+}
+setplantupdatemode()
+
 if(image && name){
     const { name, image } = this.state
     axios
@@ -53,6 +62,8 @@ if(image && name){
       errorMessage: '추가할 내 식물의 이름과 사진을 입력하세요'
     })
   }
+
+
 }
 
 componentDidUpdate() { //mypage 정보 업데이트시 이 코드 실행
@@ -75,7 +86,7 @@ componentDidUpdate() { //mypage 정보 업데이트시 이 코드 실행
       <img>{this.props.userinfo.profileImage/*사진 어케넣니*/}</img>
       <span className="username">{this.props.userinfo.username}</span>
       <span className="currentstatus">{this.props.userinfo.currentstatus}</span>
-      <button className="btn-logout" onClick={this.setmode}>update userinfo</button>
+      <button className="btn-logout" onClick={this.setprofilemode}>update userinfo</button>
       {this.state.mode==='update' ? (<UpdateMypage></UpdateMypage>) :('')}
       </div>
 
@@ -86,6 +97,7 @@ componentDidUpdate() { //mypage 정보 업데이트시 이 코드 실행
       </div>
       <button className="btn-updateplany" onClick={this.updatemyplant}>update myplant</button>
       {this.state.errorMessage.length ===0 ? ('') : (<div>{this.state.errorMessage}</div>)}
+      {this.state.mode==='plantupdate' ? (<UpdatePlant></UpdatePlant>) :('')}
       </div>
     }
 }
