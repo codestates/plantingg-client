@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
-import { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
+import axios from 'axios';
 import google from './image/g.png';
+import Signin from './SignIn';
+import { useHistory } from "react-router-dom";
+
 
 function SignUp({ openModal, closeModal, isModalOn }) {
+  const history = useHistory();
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const [backOpen, setBackOpen] = useState(false);
-
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isSignup, setIsSignup] = useState(false);
+  console.log('history : ', history)
   function handleUsername(e) {
     setUsername(e.target.value);
   }
@@ -22,15 +28,35 @@ function SignUp({ openModal, closeModal, isModalOn }) {
     setPassword(e.target.value);
   }
 
-  // function handleCloseOutside(e) {
+  function handleSignup() {
+    setIsSignup(true);
+  }
 
+  // [ 회원가입 서버 연결부분 ]
+  // function handleSignup() {
+  //   if (!username || !email || !password) {
+  //     setErrorMessage('회원 정보를 모두 입력하세요.')
+  //     return;
+  //   }
+  //   else {
+  //     setErrorMessage('')
+  //   }
+  //   axios
+  //     .post('https://plantingg.com/user/signup', {
+  //       usename: username,
+  //       email: email,
+  //       password: password,
+  //     }, {
+  //       'Content-Type': 'application/json',
+  //       withCredentials: true
+  //     })
+  //     .then((res) => {
+  //       // Mainpage로 이동하게 
+  //      // history.push('/main')
+  //     })
+  //     .catch((err) => console.log(err))
   // }
 
-  // useEffect() => {
-  //   window.addEventListener('click', (e) => {
-  //     e.target === 
-  //   })
-  // }
 
   return (
     <div
@@ -49,7 +75,7 @@ function SignUp({ openModal, closeModal, isModalOn }) {
             className="modal-input"
             placeholder="Email"
             onChange={handleEmail}
-            type="text"
+            type="email"
           />
           <input
             className="modal-input"
@@ -64,7 +90,14 @@ function SignUp({ openModal, closeModal, isModalOn }) {
             type="password"
           />
 
-          <button className="signup-btn btn">회원 가입</button>
+          <button
+            className="signup-btn btn"
+            onClick={handleSignup}>
+            회원 가입
+          </button>
+
+          {/* 정상적으로 회원 가입처리가 된 경우 Signin 페이지로 이동 */}
+          {/* {errorMessage ? <div>{errorMessage}</div> : <Signin />} */}
           <button className="signup-social btn">
             <img className="g-logo" src={google} />
             구글계정으로 회원가입</button>

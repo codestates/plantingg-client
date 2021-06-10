@@ -44,11 +44,7 @@
   padding : 8px;
   margin : 3px;
   border-radius: 7px;
-  border : 1.5px solid rgba(0,0,0,0.3)
-}
-
-.btn {
-color : 
+  border : 1.5px solid rgba(0,0,0,0.3);
 }
 
 .signin-signup {
@@ -58,9 +54,12 @@ color :
 .close {
   margin-top : 20px;
   border : none;
+  box-shadow : 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   background-color: transparent;
   cursor: pointer;
-  color : rgba(0,0,0,0.3)
+  color : rgba(0,0,0,0.7);
+  border-radius : 7px;
+  padding : 7px;
 }
 
 .close:hover {
