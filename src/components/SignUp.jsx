@@ -1,33 +1,80 @@
-import React from 'react';
-import { Modal, Button } from 'react-bootstrap'
+import React, { Component } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import google from './image/g.png';
 
-function SignUp({ show, onHide }) {
+function SignUp({ openModal, closeModal, isModalOn }) {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const [backOpen, setBackOpen] = useState(false);
+
+  function handleUsername(e) {
+    setUsername(e.target.value);
+  }
+
+  function handlePassword(e) {
+    setEmail(e.target.value);
+  }
+
+  function handleEmail(e) {
+    setPassword(e.target.value);
+  }
+
+  // function handleCloseOutside(e) {
+
+  // }
+
+  // useEffect() => {
+  //   window.addEventListener('click', (e) => {
+  //     e.target === 
+  //   })
+  // }
+
   return (
-    <Modal
-      show={show}
-      onHide={onHide}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={onHide}>Close</Button>
-      </Modal.Footer>
-    </Modal>
+    <div
+      className="modal-container show-modal"
+      onClick={openModal} >
+      <div className="modal" onClick={e => e.stopPropagation()}>
+        <h2 className="modal-header">회원 가입</h2>
+        <form className="modal-info">
+          <input
+            className="modal-input"
+            placeholder="Username"
+            onChange={handleUsername}
+            type="text"
+          />
+          <input
+            className="modal-input"
+            placeholder="Email"
+            onChange={handleEmail}
+            type="text"
+          />
+          <input
+            className="modal-input"
+            placeholder="Password"
+            onChange={handlePassword}
+            type="password"
+          />
+          <input
+            className="modal-input"
+            placeholder="Confirm Password"
+            onChange={handlePassword}
+            type="password"
+          />
+
+          <button className="signup-btn btn">회원 가입</button>
+          <button className="signup-social btn">
+            <img className="g-logo" src={google} />
+            구글계정으로 회원가입</button>
+        </form>
+        <button onClick={closeModal} className="close btn">닫기</button>
+      </div>
+    </div >
   );
+
 }
 
 export default SignUp;
+

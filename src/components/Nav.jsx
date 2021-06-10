@@ -1,51 +1,60 @@
 import React, { Component } from 'react';
-import './Nav.css';
 import logo from './image/logo2.png';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
+import './Nav.css';
 
 
 class Nav extends Component {
   state = {
-    isModalOn: false,
-  };
+    isSigninOn: false,
+    isSignupOn: false,
+  }
 
-
-  handleModal = (event) => {
-    this.setState({
-      isModalOn: !this.state.isModalOn,
-    });
-    console.log('isModalOn : working!')
-  };
-
-
-  handleClickLogo = () => {
-    console.log('메인 페이지로 이동')
+  handleOpenSignin = () => {
+    this.setState({ isSigninOn: true })
+  }
+  handleCloseSignin = () => {
+    this.setState({ isSigninOn: false })
+  }
+  handleOpenSignup = () => {
+    this.setState({ isSignupOn: true })
+  }
+  handleCloseSignup = () => {
+    this.setState({ isSignupOn: false })
   }
 
   render() {
     return (
       <>
         <div className="nav">
-          <img className="nav-logo" src={logo} alt="logo" onClick={this.handleClickLogo} />
+          <img className="nav-logo" src={logo} alt="logo" />
           <div className="buttons">
+            <button
+              className="nav-signin"
+              onClick={this.handleOpenSignin}
+            >로그인
+            </button>
+            {this.state.isSigninOn && (
+              <SignIn
+                openModal={this.handleOpenSignin}
+                closeModal={this.handleCloseSignin}
+                isSigninOn={this.state.isSigninOn}
+              />
+            )}
 
             <button
               className="nav-signin"
-              onClick={(
-                <SignIn
-                  handleModal={this.handleModal} />
-              )}>
-              로그인
-              </button>
-
-            <button
-              className="nav-signup"
-              onClick={
-                <SignUp show={this.state.isModalOn} onHide={this.handleModal} />
-              }>
-              회원가입
-              </button>
+              onClick={this.handleOpenSignup}
+            >회원가입
+            </button>
+            {this.state.isSignupOn && (
+              <SignUp
+                openModal={this.handleOpenSignup}
+                closeModal={this.handleCloseSignup}
+                isModalOn={this.state.isSignupOn}
+              />
+            )}
           </div>
         </div>
       </>
@@ -53,4 +62,7 @@ class Nav extends Component {
   }
 }
 
+
+
 export default Nav;
+

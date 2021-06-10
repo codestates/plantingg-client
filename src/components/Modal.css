@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+
+.modal-container {
+  background-color: rgba(0,0,0,0.3);
+  position:fixed;
+  opacity : 0;
+  pointer-events: none;
+  top:0;
+  left:0;
+  height:100vh;
+  width:100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.show-modal {
+  opacity:1;
+  pointer-events: auto;
+}
+
+.modal-info {
+  display : flex;
+  flex-direction: column;
+}
+
+.modal {
+  background-color: #fff;
+  width : 400px;
+  max-width : 100%;
+  padding : 50px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.modal-header {
+  margin-bottom : 10px;
+}
+
+.modal-input,
+.btn {
+  padding : 8px;
+  margin : 3px;
+  border-radius: 7px;
+  border : 1.5px solid rgba(0,0,0,0.3)
+}
+
+.btn {
+color : 
+}
+
+.signin-signup {
+  margin-top : 8px;
+}
+
+.close {
+  margin-top : 20px;
+  border : none;
+  background-color: transparent;
+  cursor: pointer;
+  color : rgba(0,0,0,0.3)
+}
+
+.close:hover {
+  font-weight : 800;
+  color : black;
+}
