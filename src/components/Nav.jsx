@@ -31,6 +31,8 @@ class Nav extends Component {
     this.handleOpenSignup = this.handleOpenSignup.bind(this);
     this.handleCloseSignup = this.handleCloseSignup.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
+    this.loginHandler=this.loginHandler.bind(this);
+    this.issueAccessToken=this.issueAccessToken.bind(this);
   }
 
   // [ 토큰 ]
@@ -41,7 +43,7 @@ class Nav extends Component {
   // [ 로그인 핸들러 ]
   loginHandler(data) {
     this.setState({ isLogin: true });
-    this.issueAccessToken(data.data.accessToken);
+    this.issueAccessToken(data);
   }
 
   // [회원가입 핸들러]
@@ -74,7 +76,7 @@ class Nav extends Component {
 
   // [ 로그아웃 핸들러 ]
   handleSignout = () => {
-    axios.post("https://plantingg.com/user/signout")
+    axios.post("https://localhost:4000/user/signout")
       .then(() => {
         this.setState({ isSignOut: !this.state.isSignOut })
         this.props.history.push('/');
@@ -91,7 +93,7 @@ class Nav extends Component {
   // user정보를 불러와야 마이페이지로 이동할 수 있는데...  현재는 signup 페이지에 유저정보관련 상태들이 있는데  nav에서 관리해 줘야되는지 ???
   // [로그인 성공시 게시물 페이지로 이동]
   moveToPost = () => {
-    axios.get('https://plantingg.com/uer/userinfo',
+    axios.get('https://localhost:4000/user/userinfo',
       { /*email, password 데이터*/ })
       .then(
 
@@ -103,7 +105,7 @@ class Nav extends Component {
 
   // [로그인 성공시 마이페이지로 이동] 
   moveToMypage = () => {
-    axios.get('http://plantingg.com/user/userinfo',
+    axios.get('https://localhost:4000/user/userinfo',
       { /*email, password 데이터*/ })
       .then(
         this.props.history.push('/') //mypage (마이 페이지)

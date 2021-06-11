@@ -13,11 +13,11 @@ function SignIn({ openModal, closeModal, loginHandler }) {
   const [goToSignup, setGoToSignup] = useState(false);
 
   function handlePassword(e) {
-    setEmail(e.target.value);
+    setPassword(e.target.value);
   }
 
   function handleEmail(e) {
-    setPassword(e.target.value);
+    setEmail(e.target.value);
   }
 
   function handleSwitchToSignUp(e) {
@@ -33,12 +33,12 @@ function SignIn({ openModal, closeModal, loginHandler }) {
     else {
       axios
         .post(
-          "https://platingg.com/signin",
-          { email, password },
+          "https://localhost:4000/signin",
+          { email:email, password:password },
           { headers: { "Content-Type": "application/json" }, withCredentials: true }
         )
         .then((res) => {
-          loginHandler(res.data);
+          loginHandler(res.data.data.accessToken);
         })
         .catch((err) => console.log(err));
     }
