@@ -42,3 +42,14 @@
   height : 15px;
   margin-right : 5px;
 }
+
+
+.fa-bars {
+  color : #079992;
+  margin : 0 1rem;
+  cursor: pointer;
+}
+
+/* .hide{
+  display:none;
+} */

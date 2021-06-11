@@ -5,9 +5,12 @@ const Footer = () => {
   return (
     <>
       <footer className="footer">
-        <div className="footer-address">
-          address : South Korea
+        <div className="footer-header">
+          Write on diary for your plants
         </div>
+        <div className="footer-copyright">
+          &copy; 2021 plantingg, Inc.
+          </div>
       </footer>
     </>
   )
