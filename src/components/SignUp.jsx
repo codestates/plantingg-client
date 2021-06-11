@@ -1,33 +1,32 @@
-import React from 'react';
-import { useState } from 'react';
-import axios from 'axios';
-import google from './image/g.png';
-import Signin from './SignIn';
+import React from "react";
+import { useState } from "react";
+import axios from "axios";
+import google from "./image/g.png";
+import Signin from "./SignIn";
 import { useHistory } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
-
 function SignUp({ openModal, closeModal, accessToken, issueAccessToken }) {
   const history = useHistory();
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordCheck, setPasswordCheck] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [isSignup, setIsSignup] = useState(false);
-  console.log('history : ', history)
+  // console.log('history : ', history)
   function handleUsername(e) {
     setUsername(e.target.value);
   }
 
   function handlePassword(e) {
-    setEmail(e.target.value);
+    setPassword(e.target.value);
   }
 
   function handleEmail(e) {
-    setPassword(e.target.value);
+    setEmail(e.target.value);
   }
 
   function handleSignup(e) {
@@ -42,54 +41,27 @@ function SignUp({ openModal, closeModal, accessToken, issueAccessToken }) {
 
   function signUpRequestHandler() {
     if (!username || !email || !password) {
-      setErrorMessage('회원정보를 모두 입력하세요.')
-    }
-    else {
-      axios.post('https://plantingg/signup',
-        { username, email, password },
-        { headers: { "Content-Type": "application/json" }, withCredentials: true }
-      )
-        .then(res => {
-          console.log('회원가입 리퀘스트')
+      setErrorMessage("회원정보를 모두 입력하세요.");
+    } else {
+      axios
+        .post(
+          "http://localhost:4000/signup",
+          { username: username, email: email, password: password },
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          console.log(res);
         })
-        .catch(err => console.log(err));
+        .catch((err) => console.log(err));
     }
   }
 
-
-  // [ 회원가입 서버 연결부분 ]
-  // function handleSignup() {
-  //   if (!username || !email || !password) {
-  //     setErrorMessage('회원 정보를 모두 입력하세요.')
-  //     return;
-  //   }
-  //   else {
-  //     setErrorMessage('')
-  //   }
-  //   axios
-  //     .post('https://plantingg.com/user/signup', {
-  //       usename: username,
-  //       email: email,
-  //       password: password,
-  //     }, {
-  //       'Content-Type': 'application/json',
-  //       withCredentials: true
-  //     })
-  //     .then((res) => {
-  //       // Mainpage로 이동하게 
-  //      // history.push('/main')
-  //     })
-  //     .catch((err) => console.log(err))
-  // }
-
-
   return (
-    <div
-      className="modal-container show-modal"
-      onClick={openModal} >
-      <div
-        className="modal"
-        onClick={e => e.stopPropagation()}>
+    <div className="modal-container show-modal" onClick={openModal}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
         <h2 className="modal-header">회원 가입</h2>
         <div className="modal-info">
           <input
@@ -121,9 +93,7 @@ function SignUp({ openModal, closeModal, accessToken, issueAccessToken }) {
             type="password"
           />
 
-          <button
-            className="signup-btn btn"
-            onClick={signUpRequestHandler}>
+          <button className="signup-btn btn" onClick={signUpRequestHandler}>
             회원 가입
           </button>
 
@@ -131,14 +101,15 @@ function SignUp({ openModal, closeModal, accessToken, issueAccessToken }) {
           {/* {errorMessage ? <div>{errorMessage}</div> : <Signin />} */}
           <button className="signup-social btn">
             <img className="g-logo" src={google} />
-            구글계정으로 회원가입</button>
+            구글계정으로 회원가입
+          </button>
         </div>
-        <button onClick={closeModal} className="close btn">닫기</button>
+        <button onClick={closeModal} className="close btn">
+          닫기
+        </button>
       </div>
-    </div >
+    </div>
   );
-
 }
 
 export default SignUp;
-
