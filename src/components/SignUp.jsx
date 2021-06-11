@@ -17,17 +17,17 @@ function SignUp({ openModal, closeModal, accessToken, issueAccessToken }) {
   const [passwordCheck, setPasswordCheck] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isSignup, setIsSignup] = useState(false);
-  console.log('history : ', history)
+  // console.log('history : ', history)
   function handleUsername(e) {
     setUsername(e.target.value);
   }
 
   function handlePassword(e) {
-    setEmail(e.target.value);
+    setPassword(e.target.value);
   }
 
   function handleEmail(e) {
-    setPassword(e.target.value);
+    setEmail(e.target.value);
   }
 
   function handleSignup(e) {
@@ -45,12 +45,12 @@ function SignUp({ openModal, closeModal, accessToken, issueAccessToken }) {
       setErrorMessage('회원정보를 모두 입력하세요.')
     }
     else {
-      axios.post('https://plantingg/signup',
-        { username, email, password },
+      axios.post('https://localhost:4000/signup',
+        { username:username, email:email, password:password },
         { headers: { "Content-Type": "application/json" }, withCredentials: true }
       )
         .then(res => {
-          console.log('회원가입 리퀘스트')
+          console.log(res)
         })
         .catch(err => console.log(err));
     }
