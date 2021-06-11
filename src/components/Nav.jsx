@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './image/logo1.png';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
-// import Mypage from '../pages/Mypage';
+//import Mypage from '../pages/Mypage';
 import './Nav.css';
 import Intropage from '../pages/Intropage';
 import ErrorModal from './ErrorModal';
@@ -42,6 +42,12 @@ class Nav extends Component {
   loginHandler(data) {
     this.setState({ isLogin: true });
     this.issueAccessToken(data.data.accessToken);
+  }
+
+  // [회원가입 핸들러]
+  signupHandler(data) {
+    this.setState({ isSignup: true });
+
   }
 
   // [ 모달창 on & off ]
@@ -135,9 +141,9 @@ class Nav extends Component {
                 className="nav-mypage nav-btn hide"
                 onClick={this.moveToMypage}
               >마이 페이지</button>
-              {this.state.alertLoginmessage ?
+              {/* {this.state.alertLoginmessage ?
                 <ErrorModal />
-                : <Mypage accessToken={this.state.accessToken} issueAccessToken={this.issueAccessToken} />}
+                : <Mypage accessToken={this.state.accessToken} issueAccessToken={this.issueAccessToken} />} */}
             </div>
           </>
         ) : (

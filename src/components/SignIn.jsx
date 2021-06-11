@@ -27,16 +27,21 @@ function SignIn({ openModal, closeModal, loginHandler }) {
 
   // [ 로그인 서버연결 부분 ]
   function loginRequestHandler() {
-    axios
-      .post(
-        "https://localhost:4000/login",
-        { email, password },
-        { headers: { "Content-Type": "application/json" }, withCredentials: true }
-      )
-      .then((res) => {
-        this.props.loginHandler(res.data);
-      })
-      .catch((err) => console.log(err));
+    if (!email || !password) {
+      setErrorMessage('이메일이나 비밀번호를 확인하세요.')
+    }
+    else {
+      axios
+        .post(
+          "https://platingg.com/signin",
+          { email, password },
+          { headers: { "Content-Type": "application/json" }, withCredentials: true }
+        )
+        .then((res) => {
+          loginHandler(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
   }
 
   return (

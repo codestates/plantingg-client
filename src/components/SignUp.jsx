@@ -40,41 +40,20 @@ function SignUp({ openModal, closeModal, accessToken, issueAccessToken }) {
     setErrorMessage(e.target.value !== password);
   }
 
-  accessTokenRequest() {
-    axios
-      .get("https://localhost:4000/accesstokenrequest", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-        withCredentials: true,
-      })
-      .then((res) => {
-        if (res.data.message !== "ok") {
-          const message =
-            "access token이 만료되어 불러올 수 없습니다. refresh token을 사용해주시기 바랍니다.";
-          return this.setState({ email: message, createdAt: message });
-        }
-        const { createdAt, userId, email } = res.data.data.userInfo;
-        this.setState({ userId, createdAt, email });
-      });
-  }
-
-  refreshTokenRequest() {
-    axios
-      .get("https://localhost:4000/refreshtokenrequest", {
-        withCredentials: true,
-      })
-      .then((res) => {
-        if (res.data.message !== "ok") {
-          const message =
-            "refresh token이 만료되어 불러올 수 없습니다. 다시 로그인 해주시기 바랍니다.";
-          return this.setState({ email: message, createdAt: message });
-        }
-        const { createdAt, userId, email } = res.data.data.userInfo;
-        this.setState({ userId, createdAt, email });
-        issueAccessToken(res.data.data.accessToken);
-      });
+  function signUpRequestHandler() {
+    if (!username || !email || !password) {
+      setErrorMessage('회원정보를 모두 입력하세요.')
+    }
+    else {
+      axios.post('https://plantingg/signup',
+        { username, email, password },
+        { headers: { "Content-Type": "application/json" }, withCredentials: true }
+      )
+        .then(res => {
+          console.log('회원가입 리퀘스트')
+        })
+        .catch(err => console.log(err));
+    }
   }
 
 
@@ -144,7 +123,7 @@ function SignUp({ openModal, closeModal, accessToken, issueAccessToken }) {
 
           <button
             className="signup-btn btn"
-            onClick={handleSignup}>
+            onClick={signUpRequestHandler}>
             회원 가입
           </button>
 
