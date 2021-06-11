@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import SignUp from './SignUp';
 import './Modal.css';
 import google from './image/g.png';
-import Mainpage from '../pages/Mainpage'
+// import Mainpage from '../pages/Mainpage'
 import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 function SignIn({ openModal, closeModal, isModalOn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [goToSignup, setGoToSignup] = useState(false);
-  const [signupModalOn, setSignupModalOn] = useState(false);
 
   function handlePassword(e) {
     setEmail(e.target.value);
@@ -20,13 +20,8 @@ function SignIn({ openModal, closeModal, isModalOn }) {
     setPassword(e.target.value);
   }
 
-  function handleSignupModal() {
-    setSignupModalOn(true);
-  }
-
   function handleSwitchToSignUp(e) {
     setGoToSignup(true)
-    e.preventDefault()
     console.log('회원가입으로 이동')
   }
 
@@ -59,12 +54,14 @@ function SignIn({ openModal, closeModal, isModalOn }) {
         <h2 className="modal-header">로그인</h2>
         <form className="modal-info">
           <input
+            required
             className="modal-input"
             placeholder="Email"
             onChange={handleEmail}
             type="email"
           />
           <input
+            required
             className="modal-input"
             placeholder="Password"
             onChange={handlePassword}
@@ -83,11 +80,12 @@ function SignIn({ openModal, closeModal, isModalOn }) {
           <a
             className="signin-signup"
             onClick={handleSwitchToSignUp}
-            href="/signup">
+          >
             회원가입 </a>
-          {goToSignup && (<SignUp
-
-          />)}
+          {goToSignup && (
+            <SignUp
+              signUp={goToSignup}
+            />)}
 
 
         </form>

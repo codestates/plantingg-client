@@ -5,8 +5,10 @@ import google from './image/g.png';
 import Signin from './SignIn';
 import { useHistory } from "react-router-dom";
 
+axios.defaults.withCredentials = true;
 
-function SignUp({ openModal, closeModal, isModalOn }) {
+
+function SignUp({ openModal, closeModal, isModalOn, handleSignupModal, goToSignup }) {
   const history = useHistory();
 
   const [username, setUsername] = useState('');
@@ -28,8 +30,14 @@ function SignUp({ openModal, closeModal, isModalOn }) {
     setPassword(e.target.value);
   }
 
-  function handleSignup() {
+  function handleSignup(e) {
     setIsSignup(true);
+  }
+
+  // 비밀번호 재확인
+  function handlePasswordCheck(e) {
+    setPasswordCheck(e.target.value);
+    setErrorMessage(e.target.value !== password);
   }
 
   // [ 회원가입 서버 연결부분 ]
@@ -62,31 +70,37 @@ function SignUp({ openModal, closeModal, isModalOn }) {
     <div
       className="modal-container show-modal"
       onClick={openModal} >
-      <div className="modal" onClick={e => e.stopPropagation()}>
+      <div
+        className="modal"
+        onClick={e => e.stopPropagation()}>
         <h2 className="modal-header">회원 가입</h2>
-        <form className="modal-info">
+        <div className="modal-info">
           <input
+            required
             className="modal-input"
             placeholder="Username"
             onChange={handleUsername}
             type="text"
           />
           <input
+            required
             className="modal-input"
             placeholder="Email"
             onChange={handleEmail}
             type="email"
           />
           <input
+            required
             className="modal-input"
             placeholder="Password"
             onChange={handlePassword}
             type="password"
           />
           <input
+            required
             className="modal-input"
             placeholder="Confirm Password"
-            onChange={handlePassword}
+            onChange={handlePasswordCheck}
             type="password"
           />
 
@@ -101,7 +115,7 @@ function SignUp({ openModal, closeModal, isModalOn }) {
           <button className="signup-social btn">
             <img className="g-logo" src={google} />
             구글계정으로 회원가입</button>
-        </form>
+        </div>
         <button onClick={closeModal} className="close btn">닫기</button>
       </div>
     </div >
