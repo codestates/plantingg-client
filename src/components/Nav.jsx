@@ -33,15 +33,15 @@ class Nav extends Component {
     this.handleMessage = this.handleMessage.bind(this);
   }
 
+  // [ 토큰 ]
+  issueAccessToken(token) {
+    this.setState({ accessToken: token });
+  }
+
   // [ 로그인 핸들러 ]
   loginHandler(data) {
     this.setState({ isLogin: true });
     this.issueAccessToken(data.data.accessToken);
-  }
-
-  // [ 토큰 ]
-  issueAccessToken(token) {
-    this.setState({ accessToken: token });
   }
 
   // [ 모달창 on & off ]
@@ -108,65 +108,87 @@ class Nav extends Component {
 
   render() {
     return (
-      <>
-        <div className="nav">
-          <a href="/intro">
-            <img
-              className="nav-logo"
-              src={logo}
-              alt="logo"
-              onClick={this.moveToIntro}
-            />
-          </a>
 
-          <div className="buttons">
-            <button
-              className="nav-post nav-btn"
-              onClick={this.moveToPost}
-            >새 글 작성</button>
-
-
-            <button
-              className="nav-signin nav-btn"
-              onClick={this.handleOpenSignin}
-            >로그인
-            </button>
-            {this.state.isSignInModalOn && (
-              <SignIn
-                openModal={this.handleOpenSignin}
-                closeModal={this.handleCloseSignin}
+      <div className="nav">
+        {this.state.isLogin ? (
+          <>
+            <a href="/intro">
+              <img
+                className="nav-logo"
+                src={logo}
+                alt="logo"
+                onClick={this.moveToIntro}
               />
-            )}
+            </a>
 
-            <button
-              className="nav-logout nav-btn hide"
-              onClick={this.handleSignout}
-            >로그아웃</button>
-            <button
-              className="nav-signup nav-btn"
-              onClick={this.handleOpenSignup}
-            >회원가입
-            </button>
-            {this.state.isSignUpModalOn && (
-              <SignUp
-                openModal={this.handleOpenSignup}
-                closeModal={this.handleCloseSignup}
-              />
-            )}
+            <div className="buttons">
+              <button
+                className="nav-post nav-btn"
+                onClick={this.moveToPost}
+              >새 글 작성</button>
 
-            <button
-              className="nav-mypage nav-btn hide"
-              onClick={this.moveToMypage}
-            >마이 페이지</button>
-            {/* {this.state.alertLoginmessage ? <ErrorModal /> : <Intropage />} */}
-          </div>
-          <i className="fas fa-bars fa-2x"></i>
+              <button
+                className="nav-logout nav-btn hide"
+                onClick={this.handleSignout}
+              >로그아웃</button>
+              <button
+                className="nav-mypage nav-btn hide"
+                onClick={this.moveToMypage}
+              >마이 페이지</button>
+              {this.state.alertLoginmessage ?
+                <ErrorModal />
+                : <Mypage accessToken={this.state.accessToken} issueAccessToken={this.issueAccessToken} />}
+            </div>
+          </>
+        ) : (
+            <>
+              <a href="/intro">
+                <img
+                  className="nav-logo"
+                  src={logo}
+                  alt="logo"
+                  onClick={this.moveToIntro}
+                />
+              </a>
+              <div className="buttons">
+                <button
+                  className="nav-signin nav-btn"
+                  onClick={this.handleOpenSignin}
+                >로그인
+                </button>
+                {this.state.isSignInModalOn && (
+                  <SignIn
+                    openModal={this.handleOpenSignin}
+                    closeModal={this.handleCloseSignin}
+                    loginHandler={this.loginHandler}
+                  />
+                )}
 
-        </div>
-      </>
-    );
+                <button
+                  className="nav-signup nav-btn"
+                  onClick={this.handleOpenSignup}
+                >회원가입
+                </button>
+                {this.state.isSignUpModalOn && (
+                  <SignUp
+                    openModal={this.handleOpenSignup}
+                    closeModal={this.handleCloseSignup}
+                    accessToken={this.state.accessToken}
+                    issueAccessToken={this.issueAccessToken}
+                  />
+                )}
+
+              </div>
+            </>
+          )}
+
+      </div>
+    )
   }
 }
-
 export default Nav;
 
+
+
+
+{/* <i className="fas fa-bars fa-2x"></i> */ }

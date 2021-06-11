@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 
-function SignUp({ openModal, closeModal }) {
+function SignUp({ openModal, closeModal, accessToken, issueAccessToken }) {
   const history = useHistory();
 
   const [username, setUsername] = useState('');
@@ -39,6 +39,44 @@ function SignUp({ openModal, closeModal }) {
     setPasswordCheck(e.target.value);
     setErrorMessage(e.target.value !== password);
   }
+
+  accessTokenRequest() {
+    axios
+      .get("https://localhost:4000/accesstokenrequest", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.message !== "ok") {
+          const message =
+            "access token이 만료되어 불러올 수 없습니다. refresh token을 사용해주시기 바랍니다.";
+          return this.setState({ email: message, createdAt: message });
+        }
+        const { createdAt, userId, email } = res.data.data.userInfo;
+        this.setState({ userId, createdAt, email });
+      });
+  }
+
+  refreshTokenRequest() {
+    axios
+      .get("https://localhost:4000/refreshtokenrequest", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.message !== "ok") {
+          const message =
+            "refresh token이 만료되어 불러올 수 없습니다. 다시 로그인 해주시기 바랍니다.";
+          return this.setState({ email: message, createdAt: message });
+        }
+        const { createdAt, userId, email } = res.data.data.userInfo;
+        this.setState({ userId, createdAt, email });
+        issueAccessToken(res.data.data.accessToken);
+      });
+  }
+
 
   // [ 회원가입 서버 연결부분 ]
   // function handleSignup() {

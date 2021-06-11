@@ -6,7 +6,7 @@ import google from './image/g.png';
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
-function SignIn({ openModal, closeModal }) {
+function SignIn({ openModal, closeModal, loginHandler }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -26,24 +26,17 @@ function SignIn({ openModal, closeModal }) {
   }
 
   // [ 로그인 서버연결 부분 ]
-  function handleSignin() {
-    if (!email || !password) {
-      setErrorMessage('이메일이나 비밀번호를 확인하세요.')
-      return;
-    }
-    else {
-      setErrorMessage('')
-      return axios
-        .post('https://plantingg.com/user/signin',
-          { email: email, password: password },
-          { 'Content-Type': 'application/json', withCredentials: true })
-        .then(() => {
-          alert('로그인 되었습니다.')
-        })
-        .catch(err => {
-          console.log(err)
-        })
-    }
+  function loginRequestHandler() {
+    axios
+      .post(
+        "https://localhost:4000/login",
+        { email, password },
+        { headers: { "Content-Type": "application/json" }, withCredentials: true }
+      )
+      .then((res) => {
+        this.props.loginHandler(res.data);
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -70,7 +63,7 @@ function SignIn({ openModal, closeModal }) {
 
           <button
             className="signin-btn btn"
-            onClick={handleSignin}
+            onClick={loginRequestHandler}
           >로그인</button>
           {/* 정상적으로 로그인처리가 된 경우 Mainpage로 이동 */}
           {/* 정상적으로 로그인처리가 된 경우 Nav button이 logout으로 전환 */}
