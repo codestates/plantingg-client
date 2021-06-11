@@ -6,7 +6,7 @@ import google from './image/g.png';
 import axios from 'axios';
 axios.defaults.withCredentials = true;
 
-function SignIn({ openModal, closeModal, isModalOn }) {
+function SignIn({ openModal, closeModal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -26,25 +26,25 @@ function SignIn({ openModal, closeModal, isModalOn }) {
   }
 
   // [ 로그인 서버연결 부분 ]
-  // function handleSignin() {
-  //   if (!email || !password) {
-  //     setErrorMessage('이메일이나 비밀번호를 확인하세요.')
-  //     return;
-  //   }
-  //   else {
-  //     setErrorMessage('')
-  //     return axios
-  //       .post('https://plantingg.com/user/signin',
-  //         { email: email, password: password },
-  //         { 'Content-Type': 'application/json', withCredentials: true })
-  //       .then(() => {
-  //         alert('로그인 되었습니다.')
-  //       })
-  //       .catch(err => {
-  //         console.log(err)
-  //       })
-  //   }
-  // }
+  function handleSignin() {
+    if (!email || !password) {
+      setErrorMessage('이메일이나 비밀번호를 확인하세요.')
+      return;
+    }
+    else {
+      setErrorMessage('')
+      return axios
+        .post('https://plantingg.com/user/signin',
+          { email: email, password: password },
+          { 'Content-Type': 'application/json', withCredentials: true })
+        .then(() => {
+          alert('로그인 되었습니다.')
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }
+  }
 
   return (
     <div
@@ -68,7 +68,10 @@ function SignIn({ openModal, closeModal, isModalOn }) {
             type="password"
           />
 
-          <button className="signin-btn btn">로그인</button>
+          <button
+            className="signin-btn btn"
+            onClick={handleSignin}
+          >로그인</button>
           {/* 정상적으로 로그인처리가 된 경우 Mainpage로 이동 */}
           {/* 정상적으로 로그인처리가 된 경우 Nav button이 logout으로 전환 */}
 
@@ -82,14 +85,12 @@ function SignIn({ openModal, closeModal, isModalOn }) {
             onClick={handleSwitchToSignUp}
           >
             회원가입 </a>
-          {goToSignup && (
-            <SignUp
-              signUp={goToSignup}
-            />)}
-
-
         </form>
         <button onClick={closeModal} className="close">닫기</button>
+        {goToSignup && (
+          <SignUp
+            signUp={goToSignup}
+          />)}
 
       </div>
     </div>

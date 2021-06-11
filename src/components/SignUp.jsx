@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 axios.defaults.withCredentials = true;
 
 
-function SignUp({ openModal, closeModal, isModalOn, handleSignupModal, goToSignup }) {
+function SignUp({ openModal, closeModal }) {
   const history = useHistory();
 
   const [username, setUsername] = useState('');
