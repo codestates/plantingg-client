@@ -33,7 +33,7 @@ function SignIn({ openModal, closeModal, loginHandler }) {
     else {
       axios
         .post(
-          "https://localhost:4000/signin",
+          "http://localhost:4000/signin",
           { email:email, password:password },
           { headers: { "Content-Type": "application/json" }, withCredentials: true }
         )

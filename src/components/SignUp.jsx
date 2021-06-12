@@ -45,7 +45,7 @@ function SignUp({ openModal, closeModal, accessToken, issueAccessToken }) {
       setErrorMessage('회원정보를 모두 입력하세요.')
     }
     else {
-      axios.post('https://localhost:4000/signup',
+      axios.post('http://localhost:4000/signup',
         { username:username, email:email, password:password },
         { headers: { "Content-Type": "application/json" }, withCredentials: true }
       )
