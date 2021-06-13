@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import SignUp from "./SignUp";
 import "./Modal.css";
 import google from "./image/g.png";
@@ -6,7 +6,9 @@ import google from "./image/g.png";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-function SignIn({ openModal, closeModal, loginHandler }) {
+function SignIn({ openModal, closeModal, handleLogin }) {
+  // console.log('handleLogin', handleLogin)
+  // console.log('modal', openModal)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -25,24 +27,27 @@ function SignIn({ openModal, closeModal, loginHandler }) {
     console.log("회원가입으로 이동");
   }
 
-  // [ 로그인 서버연결 부분 ]
   function loginRequestHandler() {
+    console.log('로그인 버튼 작똥')
     if (!email || !password) {
       setErrorMessage("이메일이나 비밀번호를 확인하세요.");
-    } else {
+    }
+    if (email && password) {
+      console.log('hihi')
       axios
         .post(
-          "http://localhost:4000/signin",
+          "http://localhost:4000/user/signin",
           { email: email, password: password },
-          {
-            headers: { "Content-Type": "application/json" },
-            withCredentials: true,
-          }
+          { headers: { "Content-Type": "application/json" }, withCredentials: true }
         )
         .then((res) => {
-          loginHandler(res.data.data.accessToken);
+          console.log(res.data.data);
+          handleLogin(res.data.data.accessToken);
+          localStorage.setItem('accessToken', res.data.data.accessToken);
+          localStorage.setItem('refreshToken', res.data.data.refreshToken);
+          localStorage.setItem('email', email);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     }
   }
 
@@ -50,7 +55,8 @@ function SignIn({ openModal, closeModal, loginHandler }) {
     <div className="modal-container show-modal" onClick={openModal}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <h2 className="modal-header">로그인</h2>
-        <form className="modal-info">
+        <div className="modal-info">
+
           <input
             required
             className="modal-input"
@@ -66,22 +72,22 @@ function SignIn({ openModal, closeModal, loginHandler }) {
             type="password"
           />
 
-          <button className="signin-btn btn" onClick={loginRequestHandler}>
+          <button
+            className="signin-btn btn"
+            onClick={loginRequestHandler}>
             로그인
           </button>
           {/* 정상적으로 로그인처리가 된 경우 Mainpage로 이동 */}
-          {/* 정상적으로 로그인처리가 된 경우 Nav button이 logout으로 전환 */}
-
           {/* {errorMessage ? <div>{errorMessage}</div> : <Mainpage />} */}
 
           <button className="signin-social btn">
             <img className="g-logo" src={google} />
             구글계정으로 로그인
           </button>
-          <a className="signin-signup" onClick={handleSwitchToSignUp}>
-            회원가입{" "}
+          <a className="signin-signup" onClick={handleSwitchToSignUp} href="#">
+            회원가입
           </a>
-        </form>
+        </div>
         <button onClick={closeModal} className="close">
           닫기
         </button>
@@ -89,6 +95,7 @@ function SignIn({ openModal, closeModal, loginHandler }) {
       </div>
     </div>
   );
+
 }
 
-export default SignIn;
+export default SignIn
