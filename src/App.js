@@ -1,11 +1,12 @@
 // 최상위 컴포넌트
 import React, { Component } from 'react';
+// import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Intro from './components/Intro';
-//import PostMain from './pages/PostMain';
-//import Mypage from './pages/Mypage';
-import { HashRouter, Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import PostMain from './pages/PostMain';
+import Mypage from './pages/Mypage';
+import { HashRouter, Route, Switch, Redirect, withRouter, Link } from 'react-router-dom';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 //import axios from 'axios';
@@ -43,6 +44,12 @@ class App extends Component {
     this.props.history.push('/');
   }
 
+
+  state = {
+    isLogin: false,
+    userinfo: null,
+  };
+
   render() {
     const { userInfo, isLogin, accessToken } = this.state;
     return (
@@ -54,7 +61,7 @@ class App extends Component {
             handleLogin={this.handleLogin}
             handleUserInfo={this.handleUserInfo}
           />
-          {/* <Route
+          <Route
             path='/mypage'
             render={() => (
               <Mypage
@@ -70,7 +77,7 @@ class App extends Component {
                 userinfo={userInfo}
               />
             )}
-          /> */}
+          />
           <Route
             path='/'
             render={() => {
