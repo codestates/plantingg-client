@@ -44,11 +44,6 @@ class Nav extends Component {
     console.log("회원가입 모달창 닫기");
   };
 
-  // [ 로그인 하기 전에 마이페이지 버튼을 눌렀을 경우 => 에러메시지 ]
-  // handleMessage = () => {
-  //   this.setState({ alertLoginmessage: "로그인 후 이용하세요" });
-  // };
-
   // 로고 클릭시 인트로 페이지로 이동
   moveToIntro = () => {
     this.props.history.push("/");
@@ -69,7 +64,7 @@ class Nav extends Component {
   handleSignupModalOff = () => {
     this.props.handleLogout();
     this.setState({ isSignInModalOn: false })
-    console.log('handlesignupmodaloffffff')
+    console.log('handleSignupModalOff works!!')
   }
 
   render() {
@@ -93,6 +88,7 @@ class Nav extends Component {
                 className="nav-logout nav-btn hide"
                 onClick={this.handleSignupModalOff}
               > 로그아웃 </button>
+
 
               <button
                 className="nav-mypage nav-btn hide"
@@ -120,6 +116,8 @@ class Nav extends Component {
                     openModal={this.handleOpenSignin}
                     closeModal={this.handleCloseSignin}
                     handleLogin={this.props.handleLogin}
+                    handleCloseSignin={this.handleCloseSignin}
+                    handleOpenSignup={this.handleOpenSignup}
                   />
                 )}
 

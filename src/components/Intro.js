@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import './Intropage.css';
+import './Intro.css';
 
-class Intropage extends Component {
+class Intro extends Component {
   render() {
     return (
       <>
         <main>
           <div className="intro-simple">
+            <video mute autoplay loop>
+              <source src="" type="video/mp4" />
+            </video>
             <h1 className="intro-header">Welcome to Plantingg</h1>
             introduction - simple
           </div>
@@ -19,4 +22,4 @@ class Intropage extends Component {
   }
 }
 
-export default Intropage;
+export default Intro;

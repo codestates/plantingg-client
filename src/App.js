@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import Intropage from './pages/Intropage';
+import Intro from './components/Intro';
 //import PostMain from './pages/PostMain';
 //import Mypage from './pages/Mypage';
 import { HashRouter, Route, Switch, Redirect, withRouter } from 'react-router-dom';
@@ -55,20 +55,6 @@ class App extends Component {
             handleUserInfo={this.handleUserInfo}
           />
           {/* <Route
-            exact
-            path='/signup'
-            render={() => (
-              <SignUp />
-            )}
-          />
-          <Route
-            exact
-            path='/signin'
-            render={() => (
-              <SignIn />
-            )}
-          /> */}
-          {/* <Route
             path='/mypage'
             render={() => (
               <Mypage
@@ -96,7 +82,7 @@ class App extends Component {
             }}
           />
         </Switch>
-        <Intropage />
+        <Intro />
         <Footer />
       </div >
     )

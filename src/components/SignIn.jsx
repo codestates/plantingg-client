@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import SignUp from "./SignUp";
 import "./Modal.css";
 import google from "./image/g.png";
+import { useHistory } from "react-router-dom";
 // import Mainpage from '../pages/Mainpage'
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
-function SignIn({ openModal, closeModal, handleLogin }) {
+function SignIn({ openModal, closeModal, handleLogin, handleOpenSignup, handleOpenSignin }) {
+  const history = useHistory();
   // console.log('handleLogin', handleLogin)
   // console.log('modal', openModal)
   const [email, setEmail] = useState("");
@@ -46,6 +48,9 @@ function SignIn({ openModal, closeModal, handleLogin }) {
           localStorage.setItem('accessToken', res.data.data.accessToken);
           localStorage.setItem('refreshToken', res.data.data.refreshToken);
           localStorage.setItem('email', email);
+          // 회원가입 모달창으로 갔을 때, 로그인 모달을 닫아줘야 겹쳐서 실행되지 않음
+          // handleOpenSignup();
+          // handleOpenSignin(); // 주석 풀면 로그아웃 눌렀을때 회원가입모달로 이동함 
         })
         .catch((err) => console.log(err))
     }
@@ -77,9 +82,6 @@ function SignIn({ openModal, closeModal, handleLogin }) {
             onClick={loginRequestHandler}>
             로그인
           </button>
-          {/* 정상적으로 로그인처리가 된 경우 Mainpage로 이동 */}
-          {/* {errorMessage ? <div>{errorMessage}</div> : <Mainpage />} */}
-
           <button className="signin-social btn">
             <img className="g-logo" src={google} />
             구글계정으로 로그인

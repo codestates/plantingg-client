@@ -47,9 +47,10 @@ function SignUp({ openModal, closeModal, handleUserInfo, handleOpenSignin, handl
         .then(res => {
           console.log(res)
           setIsSignup(true);
-          handleUserInfo(res.data)
-          handleOpenSignup()
-          handleOpenSignin()
+          handleUserInfo(res.data);
+          // 로그인 모달창으로 전환할 때, 회원가입 모달창을 닫아줘야 겹쳐서 실행되지 않음
+          handleOpenSignup();
+          handleOpenSignin();
           history.push('/')
         })
         .catch(err => console.log(err));
@@ -93,18 +94,11 @@ function SignUp({ openModal, closeModal, handleUserInfo, handleOpenSignin, handl
             onChange={handlePasswordCheck}
             type="password"
           />
-
           <button
             className="signup-btn btn"
             onClick={signUpRequestHandler}>
             회원 가입
           </button>
-
-          {/* 정상적으로 회원 가입처리가 된 경우 Signin 모달로 이동
-          => 회원가입이 되었다는 상태가 있어야함, 상태에 따라 모달창이 숨겨지고 보여져야함
-          => 로그인창이 회원가입창 위로 겹쳐져 보이게 됨
-          => 회원가입창을 아예 날리고 로그인창만 들어올 수는 없을까?
-          */}
           {isSignup && <Signin />}
 
           <button className="signup-social btn">
