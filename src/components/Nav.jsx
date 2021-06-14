@@ -50,17 +50,18 @@ class Nav extends Component {
     console.log("인트로 페이지로 이동");
   };
 
-  // // 로그인 성공시 게시물 페이지로 이동
-  // moveToPost = () => {
-  //   this.props.history.push("/post");
-  //   console.log("게시물 페이지로 이동");
-  // };
+  // 새 게시물 클릭시 게시물작성 페이지로 이동
+  moveToPost = () => {
+    this.props.history.push("/newpost");
+    console.log("게시물 페이지로 이동");
+  };
 
-  // // 로그인 성공시 마이페이지로 이동
-  // moveToMypage = () => {
-  //   this.props.history.push("/mypage")
-  //   console.log("마이 페이지로 이동");
-  // };
+  // 마이페이지 클릭시 마이페이지로 이동
+  moveToMypage = () => {
+    this.props.history.push("/mypage")
+    console.log("마이 페이지로 이동");
+  };
+
   handleSignupModalOff = () => {
     this.props.handleLogout();
     this.setState({ isSignInModalOn: false })
@@ -82,7 +83,10 @@ class Nav extends Component {
             </a>
 
             <div className="buttons">
-              <button className="nav-post nav-btn" > 새 글 작성 </button>
+              <button
+                className="nav-post nav-btn"
+                onClick={this.moveToNewpost}
+              > 새 글 작성 </button>
 
               <button
                 className="nav-logout nav-btn hide"

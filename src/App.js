@@ -4,11 +4,10 @@ import React, { Component } from 'react';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Intro from './components/Intro';
-import PostMain from './pages/PostMain';
+// import PostMain from './pages/PostMain';
 import Mypage from './pages/Mypage';
+import Newpost from './pages/Newpost';
 import { HashRouter, Route, Switch, Redirect, withRouter, Link } from 'react-router-dom';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
 //import axios from 'axios';
 
 class App extends Component {
@@ -19,7 +18,7 @@ class App extends Component {
       isLogin: false,
       accessToken: '',
     };
-    console.log('state', this.state)
+    //  console.log('state', this.state)
   }
 
   handleUserInfo = (obj) => {
@@ -44,53 +43,58 @@ class App extends Component {
     this.props.history.push('/');
   }
 
-
-  state = {
-    isLogin: false,
-    userinfo: null,
-  };
-
   render() {
     const { userInfo, isLogin, accessToken } = this.state;
     return (
       <div>
-        <Switch>
+        <header>
           <Nav
             handleLogout={this.handleLogout}
             isLogin={isLogin}
             handleLogin={this.handleLogin}
             handleUserInfo={this.handleUserInfo}
           />
+        </header>
+        <Switch>
+
+          <Route
+            path='/'
+            component={Intro}
+            exact={true}
+          />
+
           <Route
             path='/mypage'
             render={() => (
               <Mypage
                 userinfo={userInfo}
-                handleLogout={this.handleLogout.bind(this)}
+                handleLogout={this.handleLogout}
               />
             )}
           />
-          <Route
+          {/* <Route
             path='/post'
+            exact
             render={() => (
               <PostMain
                 userinfo={userInfo}
               />
             )}
-          />
+          /> */}
           <Route
-            path='/'
-            render={() => {
-              // if (isLogin) {
-              //   return <Redirect to='/mypage' />;
-              // }
-              // return <Redirect to='/' />
-              return <Redirect to='/' />
-            }}
+            path='/newpost'
+            render={() => (
+              <Newpost
+                userinfo={userInfo}
+              />
+            )}
           />
+
         </Switch>
-        <Intro />
-        <Footer />
+
+        <footer>
+          <Footer />
+        </footer>
       </div >
     )
   }
@@ -98,3 +102,8 @@ class App extends Component {
 
 export default withRouter(App);
 
+
+// if (isLogin) {
+//   return <Redirect to='/mypage' />;
+// }
+// return <Redirect to='/' />
