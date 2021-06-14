@@ -1,8 +1,6 @@
 import axios from 'axios'
 import React from 'react'
 axios.defaults.withCredentials = true;
-import UpdateMyPage.css
-import './Mypage.css'
 
 export default function UpdateMyPage() {
 

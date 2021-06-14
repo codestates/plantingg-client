@@ -1,12 +1,22 @@
 import React from 'react';
 import PostList from './PostList';
 import { withRouter } from 'react-router-dom';
+import Nav from '../components/Nav'
+import Footer from '../components/Footer'
+function PostMain(props) {
 
-const PostMain = props => {
   return (
     <>
-      <h2 align="center">게시판</h2>
+    <header>
+      <Nav />
+    </header>
+
+      <h2 >Post your plant</h2>
       <PostList />
+
+    <footer>
+      <Footer />
+    </footer>
     </>
   )
 }

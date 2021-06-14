@@ -9,7 +9,7 @@ import '@fortawesome/fontawesome-free/js/all.js';
 
 ReactDOM.render(
   <BrowserRouter>
-    < App />
+    <App />
   </BrowserRouter>,
   document.getElementById('root')
 );

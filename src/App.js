@@ -1,13 +1,13 @@
 // 최상위 컴포넌트
 import React, { Component } from 'react';
 import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
-
+import { withRouter } from 'react-router-dom';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Intropage from './pages/Intropage';
 import { HashRouter } from 'react-router-dom';
 import Mypage from './pages/Mypage'
-import Mypost from './pages/PostList'
+import PostMain from './pages/PostMain'
 
 // const users = [
 //   { email: 'kim@test.com', password: '123', name: 'Kim' },
@@ -36,6 +36,10 @@ class App extends Component {
             path="/mypage"
             render={props => <Mypage user={this.state.userinfo} />}
           />
+          <Route
+            path="/postmain"
+            render={props => <PostMain user={this.state.userinfo} />}
+          />
           {/* <Route
             path="/post"
             render={props => <Mypost user={this.state.userinfo} {...props} />}
@@ -49,5 +53,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
 
