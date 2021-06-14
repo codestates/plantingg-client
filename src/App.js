@@ -61,7 +61,7 @@ class App extends Component {
             handleLogin={this.handleLogin}
             handleUserInfo={this.handleUserInfo}
           />
-          <Route
+          {/* <Route
             path='/mypage'
             render={() => (
               <Mypage
@@ -77,7 +77,7 @@ class App extends Component {
                 userinfo={userInfo}
               />
             )}
-          />
+          /> */}
           <Route
             path='/'
             render={() => {

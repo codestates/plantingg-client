@@ -1,24 +1,24 @@
-import React from 'react';
-import PostList from './PostList';
-import { withRouter } from 'react-router-dom';
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
-function PostMain(props) {
+// import React from 'react';
+// import PostList from './PostList';
+// import { withRouter } from 'react-router-dom';
+// import Nav from '../components/Nav'
+// import Footer from '../components/Footer'
+// function PostMain(props) {
 
-  return (
-    <>
-      <header>
-        <Nav />
-      </header>
+//   return (
+//     <>
+//       <header>
+//         <Nav />
+//       </header>
 
-      <h2 >Post your plant</h2>
-      {/* <PostList /> */}
+//       <h2 >Post your plant</h2>
+//       {/* <PostList /> */}
 
-      <footer>
-        <Footer />
-      </footer>
-    </>
-  )
-}
+//       <footer>
+//         <Footer />
+//       </footer>
+//     </>
+//   )
+// }
 
-export default PostMain;
+// export default PostMain;

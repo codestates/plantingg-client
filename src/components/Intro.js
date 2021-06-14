@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import './Intro.css';
+// import { Player } from 'video-react';
+
 
 class Intro extends Component {
   render() {
     return (
       <>
-        <main>
+        <main className="intropage">
           <div className="intro-simple">
-            <video mute autoplay loop>
-              <source src="" type="video/mp4" />
-            </video>
-            <h1 className="intro-header">Welcome to Plantingg</h1>
+            <form id="video">
+              <input
+                type="fiile"
+                name="video"
+                multiple="false"
+              />
+            </form>
             introduction - simple
           </div>
           <div className="intro-detail">
-            introduction - detail
+            <h1 className="intro-header">Grow your plants with Plantting</h1>
+            <div className="intro-detail">
+
+              <div className="intro-detail-first">
+
+              </div>
+            </div>
           </div>
         </main>
       </>
@@ -23,3 +34,7 @@ class Intro extends Component {
 }
 
 export default Intro;
+
+{/* <video id="video" controls muted autoplay loop playsInline>
+  <source src="../public/How" />
+</video> */}
