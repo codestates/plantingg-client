@@ -1,4 +1,4 @@
-// 최상위 컴포넌트
+// 최상위 컴포넌트 .
 import React, { Component } from 'react';
 // import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Nav from './components/Nav';
