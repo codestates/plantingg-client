@@ -87,7 +87,9 @@ class Nav extends Component {
               <a href="/newpost">
                 <button className="nav-post nav-btn" onClick={this.moveToNewpost}> 새 글 작성 </button>
               </a>
-              <button className="nav-logout nav-btn hide" onClick={this.handleSignupModalOff}> 로그아웃 </button>
+              <a href="/intro">
+                <button className="nav-logout nav-btn hide" onClick={this.handleSignupModalOff}> 로그아웃 </button>
+              </a>
               <a href="/mypage">
                 <button className="nav-mypage nav-btn hide" onClick={this.moveToMypage}> 마이 페이지 </button>
               </a>
@@ -96,18 +98,10 @@ class Nav extends Component {
         ) : (
             <>
               <a href="/intro">
-                <img
-                  className="nav-logo"
-                  src={logo}
-                  onClick={this.moveToIntro}
-                  alt='logo'
-                />
+                <img className="nav-logo" src={logo} onClick={this.moveToIntro} alt='logo' />
               </a>
               <div className="buttons">
-                <button
-                  className="nav-signin nav-btn"
-                  onClick={this.handleOpenSignin}
-                >로그인</button>
+                <button className="nav-signin nav-btn" onClick={this.handleOpenSignin}>로그인</button>
                 {this.state.isSignInModalOn && (
                   <SignIn
                     openModal={this.handleOpenSignin}
@@ -118,10 +112,7 @@ class Nav extends Component {
                   />
                 )}
 
-                <button
-                  className="nav-signup nav-btn"
-                  onClick={this.handleOpenSignup}
-                >회원가입</button>
+                <button className="nav-signup nav-btn" onClick={this.handleOpenSignup}>회원가입</button>
                 {this.state.isSignUpModalOn && (
                   <SignUp
                     openModal={this.handleOpenSignup}

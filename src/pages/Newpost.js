@@ -10,11 +10,13 @@ import './Newpost.css';
 import axios from 'axios';
 
 
-function Newpost() {
+function Newpost({ accessToken }) {
   const [content, setContent] = useState('');
   const [image, setImage] = useState('');
   const [tag, setTag] = useState('');
   const [errorMessage, setErrorMesssage] = useState('');
+  const [imgFile, setImgFile] = useState('');
+  const [imgUrl, setImgUrl] = useState('이미지');
 
   function handleOnChange(e) {
     setContent(e.target.value);
@@ -22,8 +24,14 @@ function Newpost() {
   }
 
   function handleUploadImg(e) {
-    setImage(e.target.files[0])
-    console.log('이미지 파일 선택')
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.onloadend = () => {
+      setImgFile(file)
+      setImgUrl(reader.result)
+    }
+    reader.readAsDataURL(file);
   }
 
   function handleChooseTag(e) {
@@ -43,15 +51,17 @@ function Newpost() {
       content: content,
       image: image,
       tag: tag,
-    },
-      { headers: { "Content-Type": "application/json" }, withCredentials: true }
-    )
+    }, {
+      headers: {
+        "Authorization": `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      }
+    })
       .then(res => {
         console.log(res);
       })
       .catch(err => console.log(err));
   }
-
 
   return (
     <>
@@ -59,47 +69,27 @@ function Newpost() {
         <h2>Create your plantingg branch</h2>
         <div className="newpost-container">
           <div className="newpost-image-container">
-            <div class="newpost-image-space">이미지 선택하면 올라갈 자리</div>
-            <input
-              type="file"
-              accept="*"
-              className="newpost-image"
-              onChange={null}
-              onClick={handleUploadImg}
-              placeholder="share your plant's story"
-            />
-            {/* <button
-              className="newpost-image-btn btn"
-              onClick={handleUploadImg}
-            >이미지 업로드</button> */}
+            <img className='profile_preview' src={imgUrl} />
+            <input className="newpost-fileupload" type='file' accept="image/*" onChange={handleUploadImg}></input>
             <select onClick={handleChooseTag} className="select-box" size="4" multiple>
               <option className="select-box-first" value="">herb</option>
               <option className="select-box-second" value="">tree</option>
               <option className="select-box-third" value="">flower</option>
-              <option className="select-box-fourth" value="">edible plants</option>
+              <option className="select-box-fourth" value="">edible</option>
             </select>
           </div >
           <div className="newpost-contentbox">
             <textarea
               className="newpost-content"
               onChange={handleOnChange}
+              placeholder="Fill the contents"
             ></textarea>
-            <button
-              className="newpost-post-btn btn"
-              onClick={handlePostSubmit}
-            >게시물 올리기 버튼</button>
+            <button className="newpost-post-btn btn" onClick={handlePostSubmit}>게시물 올리기 버튼</button>
           </div>
-
         </div>
-
       </section>
     </>
   )
 }
 
 export default Newpost;
-
-// 이미지 파일을 선택하면 화면에 보여야함
-// 게시글 적고, 게시물 올리기 버튼을 클릭하면 백엔드로 전송 후 데이터 저장 (사진 + 게시물)
-
-// 게시물 올리기 버튼을 클릭했을 때, 이미지나 본문 내용이 아무것도 없다면 데이터 전송되면 안됨

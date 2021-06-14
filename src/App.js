@@ -56,7 +56,6 @@ class App extends Component {
           />
         </header>
         <Switch>
-
           <Route
             path='/intro'
             component={Intro}
@@ -86,6 +85,7 @@ class App extends Component {
             render={() => (
               <Newpost
                 userinfo={userInfo}
+                accessToken={accessToken}
               />
             )}
           />

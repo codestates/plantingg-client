@@ -41,7 +41,10 @@ function SignUp({
   }
 
   function signUpRequestHandler() {
-    if (!username || !email || !password) {
+    if (password !== passwordCheck) {
+      setErrorMessage('비밀번호가 다릅니다.')
+    }
+    else if (!username || !email || !password) {
       setErrorMessage("회원정보를 모두 입력하세요.");
     } else {
       axios

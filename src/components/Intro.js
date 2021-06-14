@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Intro.css';
+import introVideo from './image/plantingg.mp4';
 // import { Player } from 'video-react';
 
 
@@ -9,18 +10,18 @@ class Intro extends Component {
     return (
       <>
         <main className="intropage">
+          <div className="intro-header">
+
+          </div>
+          <video id="video" autoPlay muted loop>
+            <source src={introVideo} type="video/mp4" />
+          </video>
           <div className="intro-simple">
-            {/* <form id="video">
-              <input
-                type="fiile"
-                name="video"
-                multiple="false"
-              />
-            </form> */}
-            introduction - simple - insert video
+
+
           </div>
           <div className="intro-detail">
-            <h1 className="intro-header">Grow your plants with Plantting</h1>
+            <h1 className="intro-header">Grow your plants with Plantingg</h1>
             <div className="intro-detail">
               <div className="intro-detail-first"></div>
               <div className="intro-detail-second"></div>
