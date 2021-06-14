@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link, Route, Switch, BrowserRouter as Router} from 'react-router-dom';
 import logo from './image/logo1.png';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
-//import Mypage from '../pages/Mypage';
+import Mypage from '../pages/Mypage';
 import './Nav.css';
 import Intropage from '../pages/Intropage';
 import ErrorModal from './ErrorModal';
@@ -103,20 +104,21 @@ class Nav extends Component {
     console.log('게시물 페이지로 이동')
   }
 
-  // [로그인 성공시 마이페이지로 이동] 
+  // [마이페이지 버튼을 누르면 마이페이지로 이동] 
   moveToMypage = () => {
-    axios.get('http://localhost:4000/user/userinfo',
-      { /*email, password 데이터*/ })
-      .then(
-        this.props.history.push('/') //mypage (마이 페이지)
-      )
-      .catch(err => alert(err));
+    this.props.history.push('/mypage')
+    // axios.get('http://localhost:4000/user',
+    //   { /*email, password 데이터*/ })
+    //   .then(
+    //     this.props.history.push('/mypage') //mypage (마이 페이지)
+    //   )
+    //   .catch(err => alert(err));
     console.log('마이 페이지로 이동')
   }
 
   render() {
     return (
-
+      <Router>
       <div className="nav">
         {this.state.isLogin ? (
           <>
@@ -139,10 +141,12 @@ class Nav extends Component {
                 className="nav-logout nav-btn hide"
                 onClick={this.handleSignout}
               >로그아웃</button>
+              <Link to="/mypage">
               <button
                 className="nav-mypage nav-btn hide"
                 onClick={this.moveToMypage}
               >마이 페이지</button>
+              </Link>
               {/* {this.state.alertLoginmessage ?
                 <ErrorModal />
                 : <Mypage accessToken={this.state.accessToken} issueAccessToken={this.issueAccessToken} />} */}
@@ -189,8 +193,10 @@ class Nav extends Component {
               </div>
             </>
           )}
+          
 
       </div>
+     </Router> 
     )
   }
 }

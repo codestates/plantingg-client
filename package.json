@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "HTTPS=true SSL_CRT_FILE=cert.pem SSL_KEY_FILE=key.pem react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,11 @@
   "license": "ISC",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-regular-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "react": "^17.0.2",
