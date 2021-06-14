@@ -3,28 +3,29 @@ import './Intro.css';
 // import { Player } from 'video-react';
 
 
+
 class Intro extends Component {
   render() {
     return (
       <>
         <main className="intropage">
           <div className="intro-simple">
-            <form id="video">
+            {/* <form id="video">
               <input
                 type="fiile"
                 name="video"
                 multiple="false"
               />
-            </form>
-            introduction - simple
+            </form> */}
+            introduction - simple - insert video
           </div>
           <div className="intro-detail">
             <h1 className="intro-header">Grow your plants with Plantting</h1>
             <div className="intro-detail">
+              <div className="intro-detail-first"></div>
+              <div className="intro-detail-second"></div>
+              <div className="intro-detail-third"></div>
 
-              <div className="intro-detail-first">
-
-              </div>
             </div>
           </div>
         </main>

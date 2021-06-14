@@ -1,6 +1,6 @@
-// //Postpage
-// //게시물을 작성하면 보여지는 페이지
-// //게시물 작성 페이지는 따로
+// // Postpage
+// // 게시물을 작성하면 보여지는 페이지
+// // 게시물 작성 페이지는 따로
 
 // import { useState, useEffect } from 'react'
 // import axios from 'axios';

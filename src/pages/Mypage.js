@@ -82,9 +82,6 @@ class Mypage extends React.Component {
   render() {
     console.log(this.props.userinfo)
     return <div>
-      <header>
-        <Nav />
-      </header>
 
       <span className="profile">
 
