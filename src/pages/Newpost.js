@@ -1,11 +1,4 @@
 import { useState, useEffect } from 'react';
-// import './App.css';
-//import { CKEditor } from '@ckeditor/ckeditor5-react';
-//import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-//import ReactHtmlParser from 'react-html-parser';
-//import Axios from 'axios';
-import Nav from '../components/Nav';
-import Footer from '../components/Footer';
 import './Newpost.css';
 import axios from 'axios';
 
@@ -47,7 +40,7 @@ function Newpost({ accessToken }) {
       setErrorMesssage('내용을 입력하세요.')
     }
 
-    axios.post('http://localhost:3000/post/create', {
+    axios.post('http://localhost:4000/post/create', {
       content: content,
       image: image,
       tag: tag,

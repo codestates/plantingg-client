@@ -4,8 +4,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
 
-import CommonTableRow from '../components/table/ColumnTableRow';
-import CommonTableColumn from '../components/table/CommonTableColumn';
+// import CommonTableRow from '../components/table/ColumnTableRow';
+// import CommonTableColumn from '../components/table/CommonTableColumn';
 import { postList } from './dummydata'
 import { Link } from 'react-router-dom';
 import './PostList.css'

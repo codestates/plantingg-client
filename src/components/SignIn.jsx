@@ -44,7 +44,7 @@ function SignIn({
       console.log("hihi");
       axios
         .post(
-          `http://localhost:4000/user/signin`,
+          `http://localhost:4000/auth/signin`,
           { email: email, password: password },
           {
             headers: { "Content-Type": "application/json" },
