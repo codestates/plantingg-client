@@ -13,8 +13,8 @@ function Newpost({ accessToken, isLogin }) {
   const [imgUrl, setImgUrl] = useState('이미지');
 
   function handleOnChange(e) {
-    setContent(e.target.value);
     e.preventDefault();
+    setContent(e.target.value);
   }
 
   function handleUploadImg(e) {
@@ -29,11 +29,11 @@ function Newpost({ accessToken, isLogin }) {
   }
 
   function handleChooseTag(e) {
-    setTag(e.target.value)
+    e.preventDefault();
+    setTag(e.target.value);
   }
 
-  // new post에서는 img와 content를 업로드하고 => 백엔드로 보내고
-  // mypage에서 response로 이미지 URL 받고 상태에 저장 => 다시 백엔드로 보냄 
+  // new post에서는 img와 content를 업로드하고 백엔드로 
   function handlePostSubmit() {
     console.log('게시물 올리는 중')
 
@@ -44,16 +44,16 @@ function Newpost({ accessToken, isLogin }) {
     axios.post('http://localhost:4000/post/create', {
       content: content,
       image: image,
-      tag: tag,
+      // tag: tag,
     }, {
       headers: {
-        authorization: `Bearer ${accessToken}`,
+        authorization: accessToken,
         "Content-Type": "application/json",
       }, withCredentials: true
     })
       .then(res => {
         console.log('res : ', res);
-        isLogin(true)
+
       })
       .catch(err => console.log(err));
   }
@@ -61,20 +61,20 @@ function Newpost({ accessToken, isLogin }) {
   return (
     <>
       <section className="newpost-page">
-        <h2>Create your plantingg branch<i class="fas fa-leaf"></i></h2>
+        <h2>Create your plantingg branch<i className="fas fa-leaf"></i></h2>
         <div className="newpost-container">
           <div className="newpost-image-container">
             <img className='profile_preview' src={imgUrl} />
             <input className="newpost-fileupload" type='file' accept="image/*" onChange={handleUploadImg}></input>
             {/* <button className="newpost-fileupload-fakebtn">Image upload</button> */}
             <div className="selectbox-container">
-              <select onClick={handleChooseTag} className="select-box" value="4" multiple>
+              <select onClick={handleChooseTag} className="select-box" value="4" multiple={true}>
                 <option className="select-box-items">herb</option>
                 <option className="select-box-items">tree</option>
                 <option className="select-box-items">flower</option>
                 <option className="select-box-items">edible</option>
               </select>
-              <select onClick={handleChooseTag} className="select-box" value="4" multiple>
+              <select onClick={handleChooseTag} className="select-box" value="4" multiple={true}>
                 <option className="select-box-items">cactus</option>
                 <option className="select-box-items">succulent</option>
                 <option className="select-box-items">scent</option>

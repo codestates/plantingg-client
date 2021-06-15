@@ -51,7 +51,7 @@ function SignIn({
           {
             headers: {
               "Content-Type": "application/json",
-              authorization: `Bearer ${accessToken}`
+              authorization: accessToken
             },
             withCredentials: true,
           }

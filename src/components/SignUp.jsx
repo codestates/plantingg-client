@@ -60,8 +60,8 @@ function SignUp({
         )
         .then((res) => {
           console.log('res.data :', res.data);
+          handleUserInfo(res.data); // 여기서 유저인포 들어가도록 보내주고 있어요.
           setIsSignup(true);
-          handleUserInfo(res.data);
           // 로그인 모달창으로 전환할 때, 회원가입 모달창을 닫아줘야 겹쳐서 실행되지 않음
           handleOpenSignup();
           handleOpenSignin();

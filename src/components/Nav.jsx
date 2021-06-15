@@ -32,8 +32,6 @@ class Nav extends Component {
 
   handleCloseSignin = () => {
     this.setState({ isSignInModalOn: false });
-    this.props.handleLoginTrue();
-
     console.log("로그인 모달창 닫기");
   };
 
@@ -51,8 +49,7 @@ class Nav extends Component {
 
   // 로고 클릭시 인트로 페이지로 이동
   moveToIntro = () => {
-    this.props.history.push("/");
-    this.props.handleLoginTrue();
+    this.props.history.push("/intro");
     console.log("인트로 페이지로 이동");
   };
 
@@ -70,7 +67,6 @@ class Nav extends Component {
 
   // 게시물 보기 페이지로 이동
   moveToPost = () => {
-    this.props.handleLoginTrue();
     this.props.history.push("/post");
     console.log("post 페이지로 이동");
 
@@ -79,8 +75,6 @@ class Nav extends Component {
   // 마이페이지 클릭시 마이페이지로 이동
   moveToMypage = () => {
     this.props.history.push("/mypage")
-    this.props.handleLoginTrue();
-
     console.log("마이 페이지로 이동");
   };
 
@@ -96,7 +90,7 @@ class Nav extends Component {
       <div className="nav">
         {this.props.isLogin ? (
           <>
-            <a href="/">
+            <a href="#">
               <img
                 className="nav-logo"
                 src={logo}
@@ -106,7 +100,7 @@ class Nav extends Component {
             </a>
 
             <div className="buttons">
-              <a href="/post">
+              <a href="#">
                 <button className="nav-post nav-btn" onClick={this.moveToPost}> 게시물 보기 </button>
               </a>
               <a href="#">

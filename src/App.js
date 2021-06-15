@@ -21,36 +21,6 @@ class App extends Component {
     console.log('액세스 토큰 상태확인 :', this.state.accessToken)
   }
 
-  // handleKeepLogin = async () => {
-  //   const loggedInfo = storage.get('loggedInfo')
-  //   if (!loggedInfo) return;
-
-  //   const { UserActions } = this.props;
-  //   UserActions.setLoggedInfo(loggedInfo);
-  //   try {
-  //     await UserActions.checkStatus();
-
-  //   } catch (e) {
-  //     storage.remove('loggedInfo');
-  //     window.applicationCache.href = '/auth/login?expired';
-  //   }
-  // }
-
-  // componentDidMount() {
-  //   console.log('컴포넌트 딛 마운트')
-  //   const token = localStorage.getItem('token');
-  //   if (token) {
-  //     this.setState({ isLogin: true })
-  //   } else {
-  //     this.setState({ isLogin: false })
-  //   }
-  // }
-
-  // handleResponseSuccess(data) {
-  //   console.log(data);
-  //   localStorage.setItem('')
-  // }
-
   handleLoginTrue = () => {
     this.setState({ isLogin: true })
   }
@@ -81,7 +51,7 @@ class App extends Component {
   }
 
   render() {
-    console.log('App.js 렌더링 props', this.props)
+    console.log('App.js 렌더링 props', this.state.userInfo)
     const { userInfo, isLogin, accessToken } = this.state;
     return (
       <div>
