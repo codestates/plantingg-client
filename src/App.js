@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Intro from './pages/Intro';
-// import PostMain from './pages/PostMain';
+import PostMain from './pages/PostMain';
 import Mypage from './pages/Mypage';
 import Newpost from './pages/Newpost';
 import { HashRouter, Route, Switch, Redirect, withRouter, Link } from 'react-router-dom';
@@ -71,7 +71,7 @@ class App extends Component {
               />
             )}
           />
-          {/* <Route
+          <Route
             path='/post'
             exact
             render={() => (
@@ -79,7 +79,7 @@ class App extends Component {
                 userinfo={userInfo}
               />
             )}
-          /> */}
+          />
           <Route
             path='/newpost'
             render={() => (
