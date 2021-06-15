@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
-import Intro from './components/Intro';
+import Intro from './pages/Intro';
 // import PostMain from './pages/PostMain';
 import Mypage from './pages/Mypage';
 import Newpost from './pages/Newpost';

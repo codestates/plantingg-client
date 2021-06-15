@@ -6,7 +6,7 @@ const Footer = () => {
     <>
       <footer className="footer">
         <div className="footer-header">
-          Write on diary for your plants
+          Grow your plants with Plantingg
         </div>
         <div className="footer-copyright">
           &copy; 2021 plantingg, Inc.

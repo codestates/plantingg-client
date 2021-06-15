@@ -10,12 +10,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
 }
 
 .nav-logo {
-  /* background-color: rgba(102, 88, 51, 0.2); */
   border-radius: 50%;
-  width : 3rem;
+  width : 2rem;
   margin : 1.3rem;
   cursor : pointer;
   animation : rotateLogo 1s linear infinite;

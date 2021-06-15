@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Intro.css';
-import introVideo from './image/plantingg.mp4';
+import introVideo from '../components/image/plantingg.mp4';
 // import { Player } from 'video-react';
 
 
