@@ -7,16 +7,10 @@ function PostMain(props) {
 
   return (
     <>
-      <header>
-        <Nav />
-      </header>
 
       <h2 >Post your plant</h2>
-      {/* <PostList /> */}
+      <PostList />
 
-      <footer>
-        <Footer />
-      </footer>
     </>
   )
 }

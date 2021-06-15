@@ -54,13 +54,16 @@ class App extends Component {
     const { userInfo, isLogin, accessToken } = this.state;
     return (
       <div>
-        <Switch>
+          <header>
           <Nav
             handleLogout={this.handleLogout}
             isLogin={isLogin}
             handleLogin={this.handleLogin}
             handleUserInfo={this.handleUserInfo}
           />
+          </header>
+      
+          <Switch>
           <Route
             path='/mypage'
             render={() => (
@@ -80,16 +83,9 @@ class App extends Component {
           />
           <Route
             path='/'
-            render={() => {
-              // if (isLogin) {
-              //   return <Redirect to='/mypage' />;
-              // }
-              // return <Redirect to='/' />
-              return <Redirect to='/' />
-            }}
+            component={Intro} exact={true}
           />
         </Switch>
-        <Intro />
         <Footer />
       </div >
     )
