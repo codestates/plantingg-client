@@ -7,12 +7,14 @@ import "./Nav.css";
 //import Intropage from "../pages/Intropage";
 //import ErrorModal from "./ErrorModal";
 import axios from "axios";
+import { withRouter } from 'react-router-dom';
+
 
 axios.defaults.withCredentials = true;
 
 class Nav extends Component {
   constructor(props) {
-    console.log(props)
+    console.log('nav bar props : ', props)
 
     super(props);
     this.state = {
@@ -30,6 +32,8 @@ class Nav extends Component {
 
   handleCloseSignin = () => {
     this.setState({ isSignInModalOn: false });
+    this.props.handleLoginTrue();
+
     console.log("로그인 모달창 닫기");
   };
 
@@ -48,18 +52,35 @@ class Nav extends Component {
   // 로고 클릭시 인트로 페이지로 이동
   moveToIntro = () => {
     this.props.history.push("/");
+    this.props.handleLoginTrue();
     console.log("인트로 페이지로 이동");
   };
 
+  accessToken = () => {
+    this.props.isAccessToken();
+  }
+
   // 새 게시물 클릭시 게시물작성 페이지로 이동
-  moveToPost = () => {
+  moveToNewpost = () => {
+    this.props.handleLoginTrue();
     this.props.history.push("/newpost");
-    console.log("게시물 페이지로 이동");
+    console.log("new post 페이지로 이동");
   };
+
+
+  // 게시물 보기 페이지로 이동
+  moveToPost = () => {
+    this.props.handleLoginTrue();
+    this.props.history.push("/post");
+    console.log("post 페이지로 이동");
+
+  }
 
   // 마이페이지 클릭시 마이페이지로 이동
   moveToMypage = () => {
     this.props.history.push("/mypage")
+    this.props.handleLoginTrue();
+
     console.log("마이 페이지로 이동");
   };
 
@@ -70,11 +91,12 @@ class Nav extends Component {
   }
 
   render() {
+    console.log('nav render props :', this.props)
     return (
       <div className="nav">
         {this.props.isLogin ? (
           <>
-            <a href="/intro">
+            <a href="/">
               <img
                 className="nav-logo"
                 src={logo}
@@ -84,21 +106,24 @@ class Nav extends Component {
             </a>
 
             <div className="buttons">
-              <a href="/newpost">
-                <button className="nav-post nav-btn" onClick={this.moveToNewpost}> 새 글 작성 </button>
+              <a href="/post">
+                <button className="nav-post nav-btn" onClick={this.moveToPost}> 게시물 보기 </button>
               </a>
-              <a href="/intro">
-                <button className="nav-logout nav-btn hide" onClick={this.handleSignupModalOff}> 로그아웃 </button>
+              <a href="#">
+                <button className="nav-post nav-btn" onClick={this.moveToNewpost} > 새 글 작성 </button>
               </a>
-              <a href="/mypage">
+              <a href="/">
+                <button className="nav-logout nav-btn hide" > 로그아웃 </button>
+              </a>
+              <a href="#">
                 <button className="nav-mypage nav-btn hide" onClick={this.moveToMypage}> 마이 페이지 </button>
               </a>
             </div>
           </>
         ) : (
             <>
-              <a href="/intro">
-                <img className="nav-logo" src={logo} onClick={this.moveToIntro} alt='logo' />
+              <a href="#">
+                <img className="nav-logo" onClick={this.moveToIntro} src={logo} alt='logo' />
               </a>
               <div className="buttons">
                 <button className="nav-signin nav-btn" onClick={this.handleOpenSignin}>로그인</button>
@@ -129,5 +154,5 @@ class Nav extends Component {
     );
   }
 }
-export default Nav;
+export default withRouter(Nav);
 

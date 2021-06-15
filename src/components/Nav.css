@@ -18,21 +18,21 @@
   width : 2rem;
   margin : 1.3rem;
   cursor : pointer;
-  animation : rotateLogo 1s linear infinite;
+  /* animation : rotateLogo 1s linear infinite; */
 }
 
-@keyframes rotateLogo {
+/* @keyframes rotateLogo {
   0% {
     transform : none;
   }
   50% {
-    transform : scale(0.95)
+    transform : scale(0.94)
   }
 
   100% {
     transform : none;
   }
-}
+} */
 
 
 .nav-btn {

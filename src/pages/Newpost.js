@@ -3,7 +3,8 @@ import './Newpost.css';
 import axios from 'axios';
 
 
-function Newpost({ accessToken }) {
+function Newpost({ accessToken, isLogin }) {
+  console.log('newpost isLogin:', isLogin)
   const [content, setContent] = useState('');
   const [image, setImage] = useState('');
   const [tag, setTag] = useState('');
@@ -46,12 +47,13 @@ function Newpost({ accessToken }) {
       tag: tag,
     }, {
       headers: {
-        "Authorization": `Bearer ${accessToken}`,
+        authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
-      }
+      }, withCredentials: true
     })
       .then(res => {
-        console.log(res);
+        console.log('res : ', res);
+        isLogin(true)
       })
       .catch(err => console.log(err));
   }
@@ -59,25 +61,34 @@ function Newpost({ accessToken }) {
   return (
     <>
       <section className="newpost-page">
-        <h2>Create your plantingg branch</h2>
+        <h2>Create your plantingg branch<i class="fas fa-leaf"></i></h2>
         <div className="newpost-container">
           <div className="newpost-image-container">
             <img className='profile_preview' src={imgUrl} />
             <input className="newpost-fileupload" type='file' accept="image/*" onChange={handleUploadImg}></input>
-            <select onClick={handleChooseTag} className="select-box" size="4" multiple>
-              <option className="select-box-first" value="">herb</option>
-              <option className="select-box-second" value="">tree</option>
-              <option className="select-box-third" value="">flower</option>
-              <option className="select-box-fourth" value="">edible</option>
-            </select>
+            {/* <button className="newpost-fileupload-fakebtn">Image upload</button> */}
+            <div className="selectbox-container">
+              <select onClick={handleChooseTag} className="select-box" value="4" multiple>
+                <option className="select-box-items">herb</option>
+                <option className="select-box-items">tree</option>
+                <option className="select-box-items">flower</option>
+                <option className="select-box-items">edible</option>
+              </select>
+              <select onClick={handleChooseTag} className="select-box" value="4" multiple>
+                <option className="select-box-items">cactus</option>
+                <option className="select-box-items">succulent</option>
+                <option className="select-box-items">scent</option>
+                <option className="select-box-items">etc</option>
+              </select>
+            </div>
           </div >
           <div className="newpost-contentbox">
             <textarea
               className="newpost-content"
               onChange={handleOnChange}
-              placeholder="Fill the contents"
+              placeholder="내용을 입력하세요"
             ></textarea>
-            <button className="newpost-post-btn btn" onClick={handlePostSubmit}>게시물 올리기 버튼</button>
+            <button className="newpost-post-btn btn" onClick={handlePostSubmit}>Post</button>
           </div>
         </div>
       </section>
