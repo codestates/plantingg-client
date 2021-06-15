@@ -3,6 +3,16 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+input,
+textarea,
+option,
+select,
+img {
+  outline : none;
+  border : none;
+}
+
+
 .newpost-page h2 {
  font-weight: 700;
  text-align: center;
@@ -17,8 +27,7 @@
 }
 
 .newpost-container {
-  border : 1px solid seagreen;
-
+  border : 1px solid black;
   background-color: rgba(21, 48, 42, 0.1);
   border-radius : 20px;
   margin : 15px;
@@ -28,18 +37,29 @@
 }
 
 .newpost-image-container {
-  border : 1px solid seagreen;
+  /* border : 1px solid black; */
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin :7px 0;
 }
 
 .newpost-fileupload {
-  width : 150px;
+  width : 65px;
+  font-size : 13px;
+  overflow: hidden;
+  background-color: rgba(21, 48, 42, 0.1);
+  float: left;
 }
 
+/* .newpost-fileupload-fakebtn {
+  position: absolute;
+  bottom : 230px;
+  padding : 3px; 
+} */
+
 .newpost-contentbox {
-  border : 1px solid seagreen;
+  /* border : 1px solid black; */
   display:flex;
   flex-direction: column;
   justify-content: space-around;
@@ -52,22 +72,28 @@
   height : 200px;
   border : none;
   box-shadow : 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-
+  border-radius: 15px;
 }
 
-.newpost-btn {
-  justify-content: flex-end;
+.newpost-content::placeholder {
+  color : rgba(102, 88, 51, .5);
+  padding : 5px;
+  font-size : 5px;
 }
 
-.newpost-post-btn,
-.newpost-image-btn {
-  background-color: rgba(102, 88, 51);
+.newpost-post-btn {
+  background-color: transparent;
   border : none;
-  color : white;
+  color : rgba(50, 50, 93, 0.9);
   font-weight: 600;
   border-radius: 15px;
   box-shadow : 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   cursor: pointer;
+  font-weight: lighter;
+}
+
+.newpost-post-btn:hover {
+  font-weight: 600;
 }
 
 .select-box {
@@ -76,21 +102,18 @@
   display: flex;
   height : 120px; 
   margin-top : 5px;
-
 }
 
-.select-box>option {
+.select-box-items {
   color :rgba(102, 88, 51);
   font-weight: 600;
   border-radius: 15px;
-  box-shadow : 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   cursor: pointer;
-  width : 100px;
-  text-align: center;
   display: flex;
   margin-bottom : 5px;
-  padding : 3px;
-  width : 60px;
+  padding : 4px;
+  text-align: center;
+  box-shadow : 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .select-box>option:hover {
@@ -100,24 +123,37 @@
 }
 
 .fa-leaf {
-  color: #665833;
+  color: rgba(39, 58, 32, 0.8);
+  margin-left : 5px;
+  animation :beatLeaf 1s linear infinite;
+}
+
+@keyframes beatLeaf {
+  0% {
+    transform : none; 
+  }
+  50% {
+    transform : scale(.97);
+  }
+
+  100% {
+    transform : none; 
+  }
 }
 
 .profile_preview {
-  background-color: #efefef;
+  background-color: #ffffff;
   width : 150px;
   height: 150px;
-  border : none;
+  border-radius: 50%;
+  background-image: url('');
+  box-shadow : 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   outline: none;
+  border:none;
 }
 
-
-input,
-textarea,
-option,
-select,
-img {
-  outline : none;
+.selectbox-container {
+  display: flex;
+  justify-content: space-between;
 }
-
 
