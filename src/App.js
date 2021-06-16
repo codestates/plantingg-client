@@ -67,6 +67,7 @@ class App extends Component {
             render={() => (
               <Mypage
                 userinfo={userInfo}
+                accessToken={accessToken}
                 handleLogout={this.handleLogout}
               />
             )}

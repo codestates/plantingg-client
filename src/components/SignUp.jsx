@@ -57,13 +57,13 @@ function SignUp({
           }
         )
         .then((res) => {
-          console.log(res.data);
+          console.log(`thisissignupres.data`,res);
           setIsSignup(true);
-          handleUserInfo(res.data);
+          handleUserInfo(res.data); 
           // 로그인 모달창으로 전환할 때, 회원가입 모달창을 닫아줘야 겹쳐서 실행되지 않음
           handleOpenSignup();
           handleOpenSignin();
-          history.push("/");
+          history.push("/intro");
         })
         .catch((err) => console.log(err));
     }
