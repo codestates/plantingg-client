@@ -37,23 +37,22 @@ function Newpost({ accessToken, isLogin }) {
   function handlePostSubmit() {
     console.log('게시물 올리는 중')
 
-    if (!image && !content && !tag) {
+    if (!content) {
       setErrorMesssage('내용을 입력하세요.')
     }
 
     axios.post('http://localhost:4000/post/create', {
       content: content,
-      image: image,
+      // image: image,
       // tag: tag,
     }, {
       headers: {
         authorization: accessToken,
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
       }, withCredentials: true
     })
       .then(res => {
         console.log('res : ', res);
-
       })
       .catch(err => console.log(err));
   }
