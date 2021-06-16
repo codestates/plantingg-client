@@ -37,10 +37,10 @@
       margin:20px
 }
 
-.outer {
+/* .outer {
       flex-direction:column;
       display:inline;
-}
+} */
 
 .align {
       display:flex;
@@ -91,7 +91,6 @@
       color:white;
       margin-left:35px;
       width:135px;
-
       height: 30px;
       border-radius:0.5rem;
       cursor:pointer;

@@ -4,26 +4,42 @@
 }
 
 .nav {
-  border : 1px solid seagreen;
+  /* border : 1px solid seagreen; */
   width : 100%;
   height : 4rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
 }
 
 .nav-logo {
-  width : 3rem;
+  border-radius: 50%;
+  width : 2rem;
   margin : 1.3rem;
   cursor : pointer;
+  animation : rotateLogo 1s linear infinite;
+}
+
+@keyframes rotateLogo {
+  0% {
+    transform : none;
+  }
+  50% {
+    transform : scale(0.95)
+  }
+
+  100% {
+    transform : none;
+  }
 }
 
 
 .nav-btn {
-  background-color: #079992;
+  /* background-color: rgba(102, 88, 51); */
   border : none;
   padding : .5rem 1rem;
-  color : white;
+  color : rgba(102, 88, 51);
   font-weight: 600;
   border-radius: 15px;
   box-shadow : 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -33,8 +49,8 @@
 }
 
 .nav-btn:hover {
-  background-color: whitesmoke;
-  color : seagreen;
+  background-color: whitesmoke;  
+  transform: scale();
 }
 
 .g-logo {
@@ -43,12 +59,12 @@
   margin-right : 5px;
 }
 
-
+/* 
 .fa-bars {
   color : #079992;
   margin : 0 1rem;
   cursor: pointer;
-}
+} */
 
 /* .hide{
   display:none;

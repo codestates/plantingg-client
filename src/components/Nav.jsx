@@ -7,12 +7,15 @@ import "./Nav.css";
 //import Intropage from "../pages/Intropage";
 //import ErrorModal from "./ErrorModal";
 import axios from "axios";
+import { withRouter } from 'react-router-dom';
+
 
 axios.defaults.withCredentials = true;
 
 class Nav extends Component {
   constructor(props) {
-    console.log(props)
+    console.log('nav bar props : ', props)
+
     super(props);
     this.state = {
       isSignInModalOn: false,
@@ -50,17 +53,31 @@ class Nav extends Component {
     console.log("인트로 페이지로 이동");
   };
 
-  // // 로그인 성공시 게시물 페이지로 이동
-  // moveToPost = () => {
-  //   this.props.history.push("/post");
-  //   console.log("게시물 페이지로 이동");
-  // };
+  accessToken = () => {
+    this.props.isAccessToken();
+  }
 
-  // // 로그인 성공시 마이페이지로 이동
-  // moveToMypage = () => {
-  //   this.props.history.push("/mypage")
-  //   console.log("마이 페이지로 이동");
-  // };
+  // 새 게시물 클릭시 게시물작성 페이지로 이동
+  moveToNewpost = () => {
+    // this.props.handleLoginTrue();
+    this.props.history.push("/newpost");
+    console.log("new post 페이지로 이동");
+  };
+
+
+  // 게시물 보기 페이지로 이동
+  moveToPost = () => {
+    this.props.history.push("/post");
+    console.log("post 페이지로 이동");
+
+  }
+
+  // 마이페이지 클릭시 마이페이지로 이동
+  moveToMypage = () => {
+    this.props.history.push("/mypage")
+    console.log("마이 페이지로 이동");
+  };
+
   handleSignupModalOff = () => {
     this.props.handleLogout();
     this.setState({ isSignInModalOn: false })
@@ -68,11 +85,12 @@ class Nav extends Component {
   }
 
   render() {
+    console.log('nav render props :', this.props)
     return (
       <div className="nav">
         {this.props.isLogin ? (
           <>
-            <a href="/intro">
+            <a href="#">
               <img
                 className="nav-logo"
                 src={logo}
@@ -82,35 +100,27 @@ class Nav extends Component {
             </a>
 
             <div className="buttons">
-              <button className="nav-post nav-btn" > 새 글 작성 </button>
-
-              <button
-                className="nav-logout nav-btn hide"
-                onClick={this.handleSignupModalOff}
-              > 로그아웃 </button>
-
-
-              <button
-                className="nav-mypage nav-btn hide"
-                onClick={this.moveToMypage}
-              > 마이 페이지 </button>
+              <a href="#">
+                <button className="nav-post nav-btn" onClick={this.moveToPost}> 게시물 보기 </button>
+              </a>
+              <a href="#">
+                <button className="nav-post nav-btn" onClick={this.moveToNewpost} > 새 글 작성 </button>
+              </a>
+              <a href="/">
+                <button className="nav-logout nav-btn hide" > 로그아웃 </button>
+              </a>
+              <a href="#">
+                <button className="nav-mypage nav-btn hide" onClick={this.moveToMypage}> 마이 페이지 </button>
+              </a>
             </div>
           </>
         ) : (
             <>
-              <a href="/intro">
-                <img
-                  className="nav-logo"
-                  src={logo}
-                  onClick={this.moveToIntro}
-                  alt='logo'
-                />
+              <a href="#">
+                <img className="nav-logo" onClick={this.moveToIntro} src={logo} alt='logo' />
               </a>
               <div className="buttons">
-                <button
-                  className="nav-signin nav-btn"
-                  onClick={this.handleOpenSignin}
-                >로그인</button>
+                <button className="nav-signin nav-btn" onClick={this.handleOpenSignin}>로그인</button>
                 {this.state.isSignInModalOn && (
                   <SignIn
                     openModal={this.handleOpenSignin}
@@ -121,10 +131,7 @@ class Nav extends Component {
                   />
                 )}
 
-                <button
-                  className="nav-signup nav-btn"
-                  onClick={this.handleOpenSignup}
-                >회원가입</button>
+                <button className="nav-signup nav-btn" onClick={this.handleOpenSignup}>회원가입</button>
                 {this.state.isSignUpModalOn && (
                   <SignUp
                     openModal={this.handleOpenSignup}
@@ -141,5 +148,4 @@ class Nav extends Component {
     );
   }
 }
-export default Nav;
-
+export default withRouter(Nav);

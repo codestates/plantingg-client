@@ -1,0 +1,48 @@
+* {
+      box-sizing: border-box;
+      margin : 0;
+    }
+    
+.postimg {
+      margin : 3rem ;
+      box-shadow:0px 0px 2px #000;
+      width : 15rem;
+      height : 15rem;
+      border-radius:5%;
+} 
+
+.content{
+      display:inline;
+      margin-top:50px;
+      padding:10px;
+      position:relative;
+      border-radius: 2px solid black;
+      justify-content: center;
+}
+
+/* .outer {
+      display:inline;
+      margin:10px;
+      padding:10px;
+} */
+
+.text{
+      padding: 10px;
+      margin :10px;
+      font-size: 20px;
+      word-spacing:5px;
+      text-align:justify;
+      width:100rem;
+      vertical-align: 10px;
+      font-weight: 350;
+      color:grey;
+      border-radius: 2px solid black;
+}
+
+.post{
+      border-radius: 10px solid black;
+      display:flex;
+      align-items: center;
+      margin:10px;
+      padding:10px;
+}

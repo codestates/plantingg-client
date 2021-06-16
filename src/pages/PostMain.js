@@ -3,20 +3,14 @@ import PostList from './PostList';
 import { withRouter } from 'react-router-dom';
 import Nav from '../components/Nav'
 import Footer from '../components/Footer'
-function PostMain(props) {
+function PostMain({accessToken}) {
 
   return (
     <>
-      <header>
-        <Nav />
-      </header>
 
       <h2 >Post your plant</h2>
-      {/* <PostList /> */}
+      <PostList accessToken={accessToken}/>
 
-      <footer>
-        <Footer />
-      </footer>
     </>
   )
 }

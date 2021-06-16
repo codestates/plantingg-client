@@ -5,9 +5,17 @@ import google from "./image/g.png";
 import { useHistory } from "react-router-dom";
 // import Mainpage from '../pages/Mainpage'
 import axios from "axios";
+import { useEffect } from 'react';
 axios.defaults.withCredentials = true;
 
-function SignIn({ openModal, closeModal, handleLogin, handleOpenSignup, handleOpenSignin }) {
+function SignIn({
+  openModal,
+  closeModal,
+  handleLogin,
+  handleOpenSignup,
+  handleOpenSignin,
+  accessToken
+}) {
   const history = useHistory();
   // console.log('handleLogin', handleLogin)
   // console.log('modal', openModal)
@@ -30,29 +38,38 @@ function SignIn({ openModal, closeModal, handleLogin, handleOpenSignup, handleOp
   }
 
   function loginRequestHandler() {
-    console.log('로그인 버튼 작똥')
+    console.log("로그인 버튼 작동");
     if (!email || !password) {
       setErrorMessage("이메일이나 비밀번호를 확인하세요.");
     }
     if (email && password) {
-      console.log('hihi')
+      console.log("hihi");
       axios
         .post(
-          "http://localhost:4000/user/signin",
+          `http://localhost:4000/auth/signin`,
           { email: email, password: password },
-          { headers: { "Content-Type": "application/json" }, withCredentials: true }
+          {
+            headers: {
+              "Content-Type": "application/json",
+              authorization: `Bearer ${accessToken}`
+            },
+            withCredentials: true,
+          }
         )
         .then((res) => {
-          console.log(res.data.data);
+          console.log('login 응답 :', res.data);
           handleLogin(res.data.data.accessToken);
-          localStorage.setItem('accessToken', res.data.data.accessToken);
-          localStorage.setItem('refreshToken', res.data.data.refreshToken);
-          localStorage.setItem('email', email);
-          // 회원가입 모달창으로 갔을 때, 로그인 모달을 닫아줘야 겹쳐서 실행되지 않음
-          // handleOpenSignup();
-          // handleOpenSignin(); // 주석 풀면 로그아웃 눌렀을때 회원가입모달로 이동함 
+          return res;
         })
-        .catch((err) => console.log(err))
+        .then((res) => {
+          localStorage.setItem("accessToken", res.data.data.accessToken);
+          localStorage.setItem("refreshToken", res.data.data.refreshToken);
+          localStorage.setItem("email", email);
+          // 회원가입 모달창으로 갔을 때, 로그인 모달을 닫아줘야 겹쳐서 실행되지 않음
+          //handleOpenSignup();
+          //handleOpenSignin(); // 주석 풀면 로그아웃 눌렀을때 회원가입모달로 이동함
+        })
+        .catch((err) => console.log(err));
     }
   }
 
@@ -61,7 +78,6 @@ function SignIn({ openModal, closeModal, handleLogin, handleOpenSignup, handleOp
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <h2 className="modal-header">로그인</h2>
         <div className="modal-info">
-
           <input
             required
             className="modal-input"
@@ -77,18 +93,16 @@ function SignIn({ openModal, closeModal, handleLogin, handleOpenSignup, handleOp
             type="password"
           />
 
-          <button
-            className="signin-btn btn"
-            onClick={loginRequestHandler}>
+          <button className="signin-btn btn" onClick={loginRequestHandler}>
             로그인
           </button>
           <button className="signin-social btn">
             <img className="g-logo" src={google} />
             구글계정으로 로그인
           </button>
-          <a className="signin-signup" onClick={handleSwitchToSignUp} href="#">
+          {/* <a className="signin-signup" onClick={handleSwitchToSignUp} href="#">
             회원가입
-          </a>
+          </a> */}
         </div>
         <button onClick={closeModal} className="close">
           닫기
@@ -97,7 +111,6 @@ function SignIn({ openModal, closeModal, handleLogin, handleOpenSignup, handleOp
       </div>
     </div>
   );
-
 }
 
-export default SignIn
+export default SignIn;
