@@ -15,7 +15,7 @@ function SignIn({
   handleLogin,
   handleOpenSignup,
   handleOpenSignin,
-  accessToken
+  accessToken,
 }) {
   const history = useHistory();
   // console.log('handleLogin', handleLogin)
@@ -33,15 +33,20 @@ function SignIn({
     setEmail(e.target.value);
   }
 
-  function handleSwitchToSignUp(e) {
-    setGoToSignup(true);
-    console.log("회원가입으로 이동");
+  function onKeyPress(e) {
+    if (e.key === 'Enter') {
+      loginRequestHandler();
+    }
   }
+  // function handleSwitchToSignUp(e) {
+  //   setGoToSignup(true);
+  //   console.log("회원가입으로 이동");
+  // }
 
   function loginRequestHandler() {
     console.log("로그인 버튼 작동");
     if (!email || !password) {
-      setErrorMessage("이메일이나 비밀번호를 확인하세요.");
+      setErrorMessage("Check your email & password");
     }
     if (email && password) {
       console.log("hihi");
@@ -58,8 +63,9 @@ function SignIn({
           }
         )
         .then((res) => {
-          console.log('login 응답 :', res.data.data);
+          console.log('login 응답 :', res.data);
           handleLogin(res.data.data.accessToken);
+          // handleUserInfo(res.data);
           return res;
         })
         .then((res) => {
@@ -77,13 +83,18 @@ function SignIn({
   return (
     <div className="modal-container show-modal" onClick={openModal}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <h2 className="modal-header">로그인</h2>
+        <button onClick={closeModal} className="close">
+          <i className="fas fa-times"></i>
+        </button>
+        {goToSignup && <SignUp signUp={goToSignup} />}
+        <h2 className="modal-header">Sign In </h2>
         <div className="modal-info">
           <input
             required
             className="modal-input"
             placeholder="Email"
             onChange={handleEmail}
+            onKeyPress={onKeyPress}
             type="email"
           />
           <input
@@ -91,27 +102,28 @@ function SignIn({
             className="modal-input"
             placeholder="Password"
             onChange={handlePassword}
+            onKeyPress={onKeyPress}
             type="password"
           />
-
-          <button className="signin-btn btn" onClick={loginRequestHandler}>
-            로그인
-          </button>
-          <button className="signin-social btn">
-            <img className="g-logo" src={google} />
-            구글계정으로 로그인
-          </button>
-          {/* <a className="signin-signup" onClick={handleSwitchToSignUp} href="#">
-            회원가입
-          </a> */}
+          <button className="signin-btn btn" onClick={loginRequestHandler}>Sign In</button>
+          {!errorMessage ? ('') : <div className="alert-box"><i className="fas fa-exclamation-circle"></i>{errorMessage}</div>}
         </div>
-        <button onClick={closeModal} className="close">
-          닫기
-        </button>
-        {goToSignup && <SignUp signUp={goToSignup} />}
       </div>
     </div>
   );
 }
 
 export default SignIn;
+
+
+{/* <button className="signin-social btn">
+  <img className="g-logo" src={google} />
+  구글계정으로 로그인
+</button> */}
+{/* <a className="signin-signup" onClick={handleSwitchToSignUp} href="#">
+  회원가입
+</a> */}
+
+// inputHandler(e) {
+//   this.setState({ [e.target.name]: e.target.value });
+// }

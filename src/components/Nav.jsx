@@ -100,16 +100,16 @@ class Nav extends Component {
 
             <div className="buttons">
               <a href="#">
-                <button className="nav-post nav-btn" onClick={this.moveToPost}> 게시물 보기 </button>
+                <button className="nav-post nav-btn" onClick={this.moveToPost}> My post </button>
               </a>
               <a href="#">
-                <button className="nav-post nav-btn" onClick={this.moveToNewpost} > 새 글 작성 </button>
+                <button className="nav-post nav-btn" onClick={this.moveToNewpost} > New post </button>
               </a>
               <a href="/">
-                <button className="nav-logout nav-btn hide" > 로그아웃 </button>
+                <button className="nav-logout nav-btn hide" > Sign out </button>
               </a>
               <a href="#">
-                <button className="nav-mypage nav-btn hide" onClick={this.moveToMypage}> 마이 페이지 </button>
+                <button className="nav-mypage nav-btn hide" onClick={this.moveToMypage}> My page </button>
               </a>
             </div>
           </>
@@ -119,7 +119,7 @@ class Nav extends Component {
                 <img className="nav-logo" onClick={this.moveToIntro} src={logo} alt='logo' />
               </a>
               <div className="buttons">
-                <button className="nav-signin nav-btn" onClick={this.handleOpenSignin}>로그인</button>
+                <button className="nav-signin nav-btn" onClick={this.handleOpenSignin}>Sign in</button>
                 {this.state.isSignInModalOn && (
                   <SignIn
                     openModal={this.handleOpenSignin}
@@ -131,7 +131,7 @@ class Nav extends Component {
                   />
                 )}
 
-                <button className="nav-signup nav-btn" onClick={this.handleOpenSignup}>회원가입</button>
+                <button className="nav-signup nav-btn" onClick={this.handleOpenSignup}>Sign up</button>
                 {this.state.isSignUpModalOn && (
                   <SignUp
                     openModal={this.handleOpenSignup}

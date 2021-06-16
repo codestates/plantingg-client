@@ -15,24 +15,25 @@
 
 .nav-logo {
   border-radius: 50%;
-  width : 2rem;
+  width : 2.5rem;
+  height: 2.5rem;
   margin : 1.3rem;
   cursor : pointer;
-  /* animation : rotateLogo 1s linear infinite; */
+  animation : rotateLogo 1s linear infinite;
 }
 
-/* @keyframes rotateLogo {
+@keyframes rotateLogo {
   0% {
     transform : none;
   }
   50% {
-    transform : scale(0.94)
+    transform : scale(0.97)
   }
 
   100% {
     transform : none;
   }
-} */
+}
 
 
 .nav-btn {
