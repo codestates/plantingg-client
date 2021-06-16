@@ -88,8 +88,9 @@ function SignIn({
         </button>
         {goToSignup && <SignUp signUp={goToSignup} />}
         <h2 className="modal-header">Sign In </h2>
-        <div className="modal-info">
+        <form className="modal-info">
           <input
+            autoFocus
             required
             className="modal-input"
             placeholder="Email"
@@ -107,7 +108,7 @@ function SignIn({
           />
           <button className="signin-btn btn" onClick={loginRequestHandler}>Sign In</button>
           {!errorMessage ? ('') : <div className="alert-box"><i className="fas fa-exclamation-circle"></i>{errorMessage}</div>}
-        </div>
+        </form>
       </div>
     </div>
   );

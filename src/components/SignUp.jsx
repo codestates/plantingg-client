@@ -49,7 +49,7 @@ function SignUp({
 
   function signUpRequestHandler() {
     if (password !== passwordCheck) {
-      setErrorMessage('비밀번호가 다릅니다.')
+      setErrorMessage('Check your password')
     }
     else if (!username || !email || !password) {
       setErrorMessage("Fill in all blanks.");
@@ -83,46 +83,47 @@ function SignUp({
           <i className="fas fa-times"></i>
         </button>
         <h2 className="modal-header">Sign Up</h2>
-        <div className="modal-info">
+        <form className="modal-info">
           <input
-            required
+            autoFocus
+            type="text"
             className="modal-input"
             placeholder="Username"
             onChange={handleUsername}
             onKeyPress={onKeyPress}
-            type="text"
+            required
           />
           <input
-            required
+            type="email"
             className="modal-input"
             placeholder="Email"
             onChange={handleEmail}
             onKeyPress={onKeyPress}
-            type="email"
+            required
           />
           <input
-            required
+            type="password"
             className="modal-input"
             placeholder="Password"
             onChange={handlePassword}
             onKeyPress={onKeyPress}
-            type="password"
-            minLength="8"
+            minlength="8"
+            required
           />
           <input
-            required
+            type="password"
             className="modal-input"
-            placeholder="Confirm Password"
+            placeholder="Password check"
             onChange={handlePasswordCheck}
             onKeyPress={onKeyPress}
-            type="password"
+            required
           />
           <button className="signup-btn btn" onClick={signUpRequestHandler}>
             Sign Up
           </button>
           {isSignup && <Signin />}
           {!errorMessage ? ('') : <div className="alert-box"><i className="fas fa-exclamation-circle"></i>{errorMessage}</div>}
-        </div>
+        </form>
       </div>
     </div>
   );
