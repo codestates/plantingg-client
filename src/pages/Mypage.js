@@ -93,7 +93,7 @@ class Mypage extends React.Component {
 
           <div className='text'>
             <span className="text-main">{'Plant Owner Name'}</span>
-            <span className="text">{this.state.username}</span>
+            <span className="text">{this.props.userinfo.username}</span>
           </div>
           <div className='text'>
             <span className="text-main">{'Status Message'}</span>

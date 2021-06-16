@@ -76,6 +76,7 @@ class App extends Component {
             exact
             render={() => (
               <PostMain
+                accessToken={accessToken}
                 userinfo={userInfo}
               />
             )}

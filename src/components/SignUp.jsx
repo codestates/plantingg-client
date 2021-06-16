@@ -57,7 +57,7 @@ function SignUp({
           }
         )
         .then((res) => {
-          console.log(res);
+          console.log(res.data);
           setIsSignup(true);
           handleUserInfo(res.data);
           // 로그인 모달창으로 전환할 때, 회원가입 모달창을 닫아줘야 겹쳐서 실행되지 않음

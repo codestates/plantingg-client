@@ -43,12 +43,13 @@ function Newpost({ accessToken }) {
     axios.post('http://localhost:4000/post/create', {
       content: content,
       image: image,
-      tag: tag,
+      // tag: tag,
     }, {
       headers: {
-        "Authorization": `Bearer ${accessToken}`,
+        authorization: accessToken,
         "Content-Type": "application/json",
-      }
+      },
+      withCredentials:true,
     })
       .then(res => {
         console.log(res);
