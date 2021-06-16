@@ -3,26 +3,82 @@
 
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-
+import React, { Component}  from 'react'
 // import CommonTableRow from '../components/table/ColumnTableRow';
 // import CommonTableColumn from '../components/table/CommonTableColumn';
-import { postList } from './dummydata'
+// import { postList } from './dummydata'
 import { Link } from 'react-router-dom';
 import './PostList.css'
 
-function PostList(props) {
-  // const [post, updatepost] = useState({
-  //   photo: '',
-  //   content: ''
-  // })
+// function PostList({accessToken}){
+// const [dataList, setDataList] = useState([]);
 
-  // const [viewpost, setview] = useState([])
+class PostList extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      setDataList:''
+    }
+
+  }
+
+
+  componentDidMount() {
+    axios.get('http://localhost:4000/post/read',
+    {
+      headers: {
+        authorization: this.props.accessToken,
+        "Content-Type": "application/json",
+      },
+      withCredentials:true,
+    })
+    
+    .then((res) => {
+      console.log(`thisisres.data`,res.data)
+      this.setState({
+        setDataList:res.data
+
+      })
+    })
+  }
+
 
   // useEffect(() => {
-  //   axios.get('https://localhost:3000/post/list').then((res) => {
-  //     setview(res.data)
-  //   })
-  // }, [viewpost])
+  //   axios.get("http://plantingg.com/post/list").then((res) => {
+  //     setview(res.data);
+  //   });
+  // }, [viewpost]);
+
+render(){
+  return (
+    <>
+      {
+        this.state.setDataList ? this.state.setDataList.map((item, index) => {
+          return (
+            <div className="post">
+
+              <div className="content">
+                <img src={item.image} className="postimg" />
+              </div>
+
+              <div className="content">
+                <div className="text">{item.content}</div>
+                <div className="text">{item.createDate}</div>
+                <div className="text">{item.tag}</div>
+              </div>
+
+            </div>
+          )
+        }) : ('You do not have any posts. Lets start posting with us!')
+      }
+    </>
+  )
+    }
+}
+
+
+export default PostList;
 
   // useEffect(() => {
   //   axios.get("http://plantingg.com/post/list").then((res) => {
@@ -45,41 +101,3 @@ function PostList(props) {
   //     ...post,
   //     [name]: value
   //   })
-
-
-
-
-
-  const [dataList, setDataList] = useState([]);
-
-  useEffect(() => {
-    setDataList(postList);
-  }, [])
-
-  return (
-    <>
-      {
-        dataList ? dataList.map((item, index) => {
-          return (
-            <div className="post">
-
-              <div className="content">
-                <img src={item.image} className="postimg" />
-              </div>
-
-              <div className="content">
-                <div className="text">{item.content}</div>
-                <div className="text">{item.createDate}</div>
-                <div className="text">{item.tag}</div>
-              </div>
-
-            </div>
-          )
-        }) : ('You do not have any posts. Lets start posting with us!')
-      }
-    </>
-  )
-}
-
-
-export default PostList;
