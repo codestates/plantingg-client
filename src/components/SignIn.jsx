@@ -51,13 +51,13 @@ function SignIn({
           {
             headers: {
               "Content-Type": "application/json",
-              authorization: `Bearer ${accessToken}`
+              authorization: accessToken
             },
             withCredentials: true,
           }
         )
         .then((res) => {
-          console.log('login 응답 :', res.data);
+          console.log('login 응답 :', res.data.data);
           handleLogin(res.data.data.accessToken);
           return res;
         })
