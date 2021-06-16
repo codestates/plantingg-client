@@ -59,11 +59,6 @@ class Nav extends Component {
 
   // 새 게시물 클릭시 게시물작성 페이지로 이동
   moveToNewpost = () => {
-<<<<<<< HEAD
-    this.props.handleLoginTrue();
-=======
-    // this.props.handleLoginTrue();
->>>>>>> ee65a34269ca7c1f7a0f0db7812b8d24816d9e0a
     this.props.history.push("/newpost");
     console.log("new post 페이지로 이동");
   };
@@ -153,7 +148,3 @@ class Nav extends Component {
   }
 }
 export default withRouter(Nav);
-<<<<<<< HEAD
-
-=======
->>>>>>> ee65a34269ca7c1f7a0f0db7812b8d24816d9e0a

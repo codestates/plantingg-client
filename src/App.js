@@ -66,53 +66,38 @@ class App extends Component {
           />
         </header>
         <Switch>
-          <Route
-            path='/intro'
-            exact={true}
-            component={Intro}
-            isLogin={isLogin}
-          />
-          <Route
-            path='/'
-            exact={true}
-            render={() => {
-              if (isLogin) {
-                return <Redirect to='/mypage' />;
-              }
-              return <Redirect to='/intro' />
-            }}
+          <Route path='/intro' exact={true} component={Intro} isLogin={isLogin} />
+          <Route path='/' exact={true} render={() => {
+            if (isLogin) {
+              return <Redirect to='/mypage' />;
+            }
+            return <Redirect to='/intro' />
+          }}
           />
 
-          <Route
-            path='/mypage'
-            render={() => (
-              <Mypage
-                userinfo={userInfo}
-                handleLogout={this.handleLogout}
-                isLogin={isLogin}
-              />
-            )}
+          <Route path='/mypage' render={() => (
+            <Mypage
+              userinfo={userInfo}
+              handleLogout={this.handleLogout}
+              isLogin={isLogin}
+            />
+          )}
           />
-          <Route
-            path='/post'
-            exact
-            render={() => (
-              <PostMain
-                accessToken={accessToken}
-                userinfo={userInfo}
-                isLogin={isLogin}
-              />
-            )}
+          <Route path='/post' exact render={() => (
+            <PostMain
+              accessToken={accessToken}
+              userinfo={userInfo}
+              isLogin={isLogin}
+            />
+          )}
           />
-          <Route
-            path='/newpost'
-            render={() => (
-              <Newpost
-                userinfo={userInfo}
-                accessToken={accessToken}
-                isLogin={isLogin}
-              />
-            )}
+          <Route path='/newpost' render={() => (
+            <Newpost
+              userinfo={userInfo}
+              accessToken={accessToken}
+              isLogin={isLogin}
+            />
+          )}
           />
 
         </Switch>
