@@ -75,13 +75,15 @@ class App extends Component {
           }}
           />
 
-          <Route path='/mypage' render={() => (
-            <Mypage
-              userinfo={userInfo}
-              handleLogout={this.handleLogout}
-              isLogin={isLogin}
-            />
-          )}
+          <Route
+            path='/mypage'
+            render={() => (
+              <Mypage
+                userinfo={userInfo}
+                accessToken={accessToken}
+                handleLogout={this.handleLogout}
+              />
+            )}
           />
           <Route path='/post' exact render={() => (
             <PostMain

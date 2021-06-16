@@ -13,8 +13,8 @@ class Intro extends Component {
           <div className="intro-header">
 
           </div>
-          <video id="video" autoPlay muted loop>
-            <source src={introVideo} type="video/mp4" />
+          <video  id="video" autoPlay muted loop>
+            <source src={introVideo} className="introvideo" type="video/mp4" />
           </video>
           <div className="intro-simple">
           </div>

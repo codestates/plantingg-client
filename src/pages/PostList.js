@@ -56,7 +56,7 @@ render(){
       {
         this.state.setDataList ? this.state.setDataList.map((item, index) => {
           return (
-            <div className="post">
+            <div className="post" key={index}>
 
               <div className="content">
                 <img src={item.image} className="postimg" />

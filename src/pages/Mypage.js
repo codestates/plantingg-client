@@ -23,15 +23,19 @@ class Mypage extends React.Component {
     super(props);
     this.state = {
       mode: 'welcome', // 수정버튼이 눌리면 상태가 변경되어야 한다.
-      username: /*this.props.user.username || */"정다희",
-      statusMessage: /*this.props.user.statusMessage || */"I feel crazy",
-      profileImage: /*this.props.user.profileImage ||*/ "myimg",
+      username: this.props.userinfo.username,
+      statusMessage: '',
+      profileImage: imgA,
       // name: /*this.props.user.name,//plant의 이름 */ ['천냥금',' 포인세티아','호야'],
       // image: /* this.props.user.image,//plant의 사진 */ [imgB, imgC, imgD],
       errorMessage: ""
     }
     // this.updatemyplant = this.updatemyplant.bind(this)
     this.setmode = this.setmode.bind(this)
+    this.setWelcome = this.setWelcome.bind(this)
+    this.setImg = this.setImg.bind(this)
+    this.setMsg = this.setMsg.bind(this)
+    this.setName = this.setName.bind(this)
     //   this.onChangeHandler = this.onChangeHandler.bind(this)
   }
   //   onChangeHandler = () => {
@@ -46,54 +50,41 @@ class Mypage extends React.Component {
     });
   };
 
-  // updatemyplant = () => {//컴포넌트 따로 빼야할듯
-  //   if (image && name) {
-  //     const { name, image } = this.state
-  //     axios
-  //       .post('https://plantingg.com/plant/upload', {
-  //         image,
-  //         name
-  //       },//서버에서 받아오는 변수명 수정 필요
-  //         //업데이트만 하는 컴포넌트 생성하기
-  //         { 'Content-Type': 'application/json', withCredentials: true }
-  //       )
-  //       .then(this.props.history.push("/mypage"))//페이지 새로고침 필요
-  //   } else {
-  //     this.setState({
-  //       errorMessage: '추가할 내 식물의 이름과 사진을 입력하세요'
-  //     })
-  //   }
-  // }
+  setWelcome = (msg) =>{
+    this.setState({
+      mode:"welcome",
+    })
+  }
+  setImg = (img)=>{
+    this.setState({
+      profileImage:img
+    })
+  }
 
-  // componentDidUpdate() { //mypage 정보 업데이트시 이 코드 실행
-  //   axios
-  //     .get('https://plantingg.com/plant/get',
-  //       { 'Content-Type': 'application/json', withCredentials: true }
-  //     )
-  //     .then((res) => {
-  //       let { name, image } = res.data;
-  //       this.setState({
-  //         name,
-  //         image,
-  //       })
-  //     })
-  // }
+  setMsg = (msg) =>{
+    this.setState({
+      statusMessage:msg
+    })
+  }
+
+  setName = (name) =>{
+    this.setState({
+      username:name
+    })
+  }
 
   render() {
-    console.log(this.props.userinfo)
+    console.log(this.props)//여기에 status, img 가 안옴
     return <div>
 
       <span className="profile">
-
         <span classNmae="outer3">
-          <img className='profileimg' src={imgA} />
+          <img className='profileimg' src={this.state.profileImage} />
         </span>
-
         <span className="outer3">
-
           <div className='text'>
             <span className="text-main">{'Plant Owner Name'}</span>
-            <span className="text">{this.props.userinfo.username}</span>
+            <span className="text">{this.state.username}</span>
           </div>
           <div className='text'>
             <span className="text-main">{'Status Message'}</span>
@@ -102,7 +93,7 @@ class Mypage extends React.Component {
           <div>
             <button className="btn-userinfo" onClick={this.setmode}>
               <FontAwesomeIcon icon={faPen} />update userinfo</button>
-            {this.state.mode === 'update' ? (<UpdateMypage />) : ('')}
+            {this.state.mode === 'update' ? (<UpdateMypage accessToken={this.props.accessToken} setName={this.setName} setWelcome={this.setWelcome} setImg={this.setImg} setMsg={this.setMsg} />) : ('')}
           </div>
 
         </span>
@@ -113,7 +104,8 @@ class Mypage extends React.Component {
         <div className="align">
           <span className='box'><img className="memberimg" src={imgB} /><div className="membertext">{'Total Post Count'}</div><span className="membernbr">{'5'}</span></span>
           <span className='box'><img className="memberimg" src={imgC} /><div className="membertext">{'Your Membership'}</div><span className="membernbr">{'1'}</span></span>
-          <span className='box'><img className="memberimg" src={imgD} /><div className="membertext">{'Days after Join us'}</div><span className="membernbr">{'103'}</span></span>
+          <span className='box'><img className="memberimg" src={imgD} /><div className="membertext">{'Days after Join us'}</div><span className="membernbr">
+            {this.props.userinfo.createdAt.slice(8,10)}</span></span>
         </div>
       </div>
 

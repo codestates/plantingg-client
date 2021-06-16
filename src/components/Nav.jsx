@@ -123,6 +123,7 @@ class Nav extends Component {
                 {this.state.isSignInModalOn && (
                   <SignIn
                     openModal={this.handleOpenSignin}
+                    handleUserInfo={this.props.handleUserInfo}
                     closeModal={this.handleCloseSignin}
                     handleLogin={this.props.handleLogin}
                     handleCloseSignin={this.handleCloseSignin}

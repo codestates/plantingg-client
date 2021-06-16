@@ -10,6 +10,7 @@ axios.defaults.withCredentials = true;
 
 function SignIn({
   openModal,
+  handleUserInfo,
   closeModal,
   handleLogin,
   handleOpenSignup,
