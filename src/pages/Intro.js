@@ -17,8 +17,6 @@ class Intro extends Component {
             <source src={introVideo} className="introvideo" type="video/mp4" />
           </video>
           <div className="intro-simple">
-
-
           </div>
           <div className="intro-detail">
             <h1 className="intro-header">Grow your plants with Plantingg</h1>
@@ -37,6 +35,3 @@ class Intro extends Component {
 
 export default Intro;
 
-{/* <video id="video" controls muted autoplay loop playsInline>
-  <source src="../public/How" />
-</video> */}

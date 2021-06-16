@@ -20,6 +20,7 @@ function SignUp({
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
   const [isSignup, setIsSignup] = useState(false);
 
   function handleUsername(e) {
@@ -37,8 +38,9 @@ function SignUp({
   // 비밀번호 재확인 => 적용안됨..하
   function handlePasswordCheck(e) {
     setPasswordCheck(e.target.value);
-    setErrorMessage(e.target.value !== password);
+    // setErrorMessage(e.target.value !== password);
   }
+
 
   function signUpRequestHandler() {
     if (password !== passwordCheck) {
@@ -57,9 +59,9 @@ function SignUp({
           }
         )
         .then((res) => {
-          console.log(`thisissignupres.data`,res);
+          console.log('res.data :', res.data);
+          handleUserInfo(res.data); // 여기서 유저인포 들어가도록 보내주고 있어요.
           setIsSignup(true);
-          handleUserInfo(res.data); 
           // 로그인 모달창으로 전환할 때, 회원가입 모달창을 닫아줘야 겹쳐서 실행되지 않음
           handleOpenSignup();
           handleOpenSignin();
