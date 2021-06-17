@@ -68,7 +68,7 @@ function Newpost({ accessToken, isLogin }) {
   return (
     <>
       <section className="newpost-page">
-        <h2>Create your plantingg branch<i className="fas fa-leaf"></i></h2>
+        <h2 className="page-title">Create your plantingg branch<i className="fas fa-leaf"></i></h2>
         <div className="newpost-container">
           <div className="newpost-image-container">
             <img className='profile_preview' src={imgUrl} />

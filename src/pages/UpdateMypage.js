@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 import './UpdateMypage.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
-//import imgA from '../components/image/profile.png'
+import imgA from '../components/image/profile.png'
 export default function UpdateMyPage({ setWelcome, setImg, setName, setMsg }) {
   axios.defaults.withCredentials = true;
 
   const [image, setImage] = useState('');
   const [currentstatus, setContent] = useState('');
   const [imgFile, setImgFile] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
+  const [imgUrl, setImgUrl] = useState(imgA);
   const [name, setusername] = useState('')
   const [errorMessage, setErrorMesssage] = useState('');
 
@@ -45,15 +45,15 @@ export default function UpdateMyPage({ setWelcome, setImg, setName, setMsg }) {
   return (
     <>
       <section className="newpost-page">
-        <div className="container">
+        <div className="update-container">
           <div className="newpost-image-container">
             <img className='preview' src={imgUrl} />
-            <input className="updatepost" name="file" id="file" type="file" accept="image/*" onChange={handleUploadImg} /><label for="file"><i class="fas fa-upload"></i>Find file</label>
+            <input className="updatepost" name="file" id="file" type="file" accept="image/*" onChange={handleUploadImg} />
+            <label for="file"><i class="fas fa-upload"></i>Find file</label>
           </div >
           <div className="updatebox">
             <input onChange={handleOnChangename} className="usernameprofile" placeholder="Update your username" ></input>
-            <input onChange={handleOnChange} className="contentprofile" placeholder="Update your StatusMsg"
-            ></input>
+            <input onChange={handleOnChange} className="contentprofile" placeholder="Update your StatusMsg"></input>
             <button className="newprofile" onClick={handlePostSubmit}><FontAwesomeIcon icon={faPen} />Update myinfo</button>
           </div>
         </div>

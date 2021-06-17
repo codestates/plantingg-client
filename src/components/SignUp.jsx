@@ -84,7 +84,7 @@ function SignUp({
           <i className="fas fa-times"></i>
         </button>
         <h2 className="modal-header">Sign Up</h2>
-        <form className="modal-info">
+        <div className="modal-info">
           <input
             autoFocus
             type="text"
@@ -108,7 +108,7 @@ function SignUp({
             placeholder="Password"
             onChange={handlePassword}
             onKeyPress={onKeyPress}
-            minlength="8"
+
             required
           />
           <input
@@ -124,7 +124,7 @@ function SignUp({
           </button>
           {isSignup && <Signin />}
           {!errorMessage ? ('') : <div className="alert-box"><i className="fas fa-exclamation-circle"></i>{errorMessage}</div>}
-        </form>
+        </div>
       </div>
     </div>
   );

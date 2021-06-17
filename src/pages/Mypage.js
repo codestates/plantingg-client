@@ -9,7 +9,7 @@ import './Mypage.css'
 import axios from 'axios'
 import React from 'react'
 import Nav from '../components/Nav'
-// import imgA from '../components/image/profile.png'
+import imgA from '../components/image/profile.png'
 import imgB from '../components/image/t1.png'
 import imgC from '../components/image/t2.png'
 import imgD from '../components/image/t3.png'
@@ -25,7 +25,7 @@ class Mypage extends React.Component {
       mode: 'welcome', // 수정버튼이 눌리면 상태가 변경되어야 한다.
       username: this.props.userinfo.username,
       statusMessage: '',
-      profileImage: imgB,
+      profileImage: imgA,
       // name: /*this.props.user.name,//plant의 이름 */ ['천냥금',' 포인세티아','호야'],
       // image: /* this.props.user.image,//plant의 사진 */ [imgB, imgC, imgD],
       errorMessage: ""
@@ -75,7 +75,8 @@ class Mypage extends React.Component {
 
   render() {
     console.log(this.props)//여기에 status, img 가 안옴
-    return <div>
+    return <div className="mypage-container">
+      <h2 className="page-title">My page<i className="fas fa-leaf"></i></h2>
 
       <span className="profile">
         <span classNmae="outer3">
