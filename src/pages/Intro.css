@@ -1,33 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
 * {
   box-sizing: border-box;
-  margin : 0;
+  margin: 0;
   scroll-behavior: smooth;
-}
-
-.intro-simple {
-  margin : 3rem 0;
-  width : 100%;
-  height : 15rem;
-  
-} 
-
-.intro-detail {
-  margin : 5rem 0;
-  width : 100%;
-  height : 30rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .intro-header {
-  padding: 15px 0; 
+  padding: 170px 35px;
 }
 
-#video {
+.video {
   position: absolute;
-  top: 120px;
-  right : 0;
+  top: 40px;
+  left: 20px;
   z-index: -1;
   overflow: hidden;
-  width : auto;
-  height: auto;
+  /* width: 100%; */
+  max-width: 1200px;
+  height: 700px;
+  max-height: 700px;
 }
 
+.intro-title {
+  /* font-family: "Papyrus"; */
+  font-size: 60px;
+  font-weight: 900;
+  color: rgb(23, 92, 17);
+  padding: 267px 0 10px 20px;
+}
+
+.intro-box1 {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  width: 100%;
+  height: 300px;
+}
+
+.intro-box2 {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  width: 100%;
+  height: 300px;
+}
+
+.intro-box3 {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  width: 100%;
+  height: 300px;
+}
+
+.intro-subtitle {
+  color: rgb(0, 0, 0);
+  font-size: 28px;
+  font-weight: 900;
+  text-align: left;
+  padding: 10px;
+}
+
+.diary-image {
+  position: absolute;
+  top: 890px;
+  left: 40px;
+  z-index: -1;
+  overflow: hidden;
+  max-width: 320px;
+  max-height: 200px;
+}
+
+.description1 {
+  font-size: 22px;
+  text-align: left;
+  padding: 20px 0 0 350px;
+}
+
+.description2 {
+  font-size: 20px;
+  font-weight: 400;
+  text-align: left;
+  color: rgb(113, 113, 113);
+  padding: 20px 0 0 350px;
+}
+
+.mini-box1 {
+  display: flex;
+  padding: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  height: 200px;
+  width: 48%;
+  float: left;
+  padding: 10px;
+  margin: 10px 10px;
+}
+
+.mini-box2 {
+  display: flex;
+  padding: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  height: 200px;
+  width: 48%;
+  float: right;
+  padding: 10px;
+  margin: 10px 10px;
+}
+
+.feature1 {
+  font-size: 22px;
+  text-align: left;
+}
+
+.fas {
+  width: 50px;
+  height: 30px;
+}
+
+.feature2 {
+  font-size: 22px;
+  text-align: left;
+}
+
+.intro-content {
+  font-size: 20px;
+  font-weight: 200;
+  text-align: left;
+  color: rgb(113, 113, 113);
+}
+
+.tip1 {
+  font-size: 22px;
+  text-align: left;
+}
+
+.tip2 {
+  font-size: 22px;
+  text-align: left;
+}
+
+.intro-character {
+  text-align: left;
+}
+
+.character {
+  width: 90px;
+  height: 130px;
+}
+
+.list1 {
+  font-size: 22px;
+  font-weight: 400;
+  width: 32%;
+  float: left;
+  padding: 15px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 8px;
+}
+
+.list2 {
+  font-size: 22px;
+  font-weight: 400;
+  width: 32%;
+  float: left;
+  padding: 15px;
+  margin-left: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 8px;
+}
+
+.list3 {
+  font-size: 22px;
+  font-weight: 400;
+  width: 32%;
+  float: left;
+  padding: 15px;
+  margin-left: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 8px;
+}
