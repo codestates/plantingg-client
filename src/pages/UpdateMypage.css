@@ -17,7 +17,7 @@
       border-radius : 20px;
 }
 
-    .updatepost {
+    .newpost {
       width : 65px;
       font-size : 13px;
       overflow: hidden;
@@ -25,7 +25,7 @@
       float: left;
     }
 
-    .updatebox {
+    .contentbox {
       display:flex;
       flex-direction: column;   
     }
@@ -44,7 +44,7 @@
       border-radius: 15px;
     }
 
-    .newpost-content::placeholder {
+    .updatepost-content::placeholder {
       color : rgba(102, 88, 51, .5);
       padding : 5px;
       font-size : 5px;
@@ -63,7 +63,7 @@
       font-weight: lighter;
     }
 
-    .newpost-post-btn:hover {
+    .updatepost-post-btn:hover {
       font-weight: 600;
     }
 
