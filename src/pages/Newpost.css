@@ -52,11 +52,11 @@ img {
   float: left;
 }
 
-/* .newpost-fileupload-fakebtn {
+.newpost-fileupload-fakebtn {
   position: absolute;
   bottom : 230px;
   padding : 3px; 
-} */
+}
 
 .newpost-contentbox {
   /* border : 1px solid black; */

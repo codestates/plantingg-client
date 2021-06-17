@@ -9,7 +9,7 @@ import './Mypage.css'
 import axios from 'axios'
 import React from 'react'
 import Nav from '../components/Nav'
-import imgA from '../components/image/seokjin.png'
+import imgA from '../components/image/profile.png'
 import imgB from '../components/image/t1.png'
 import imgC from '../components/image/t2.png'
 import imgD from '../components/image/t3.png'
@@ -92,11 +92,13 @@ class Mypage extends React.Component {
           </div>
           <div>
             <button className="btn-userinfo" onClick={this.setmode}>
-              <FontAwesomeIcon icon={faPen} />update userinfo</button>
-            {this.state.mode === 'update' ? (<UpdateMypage accessToken={this.props.accessToken} setName={this.setName} setWelcome={this.setWelcome} setImg={this.setImg} setMsg={this.setMsg} />) : ('')}
+            <FontAwesomeIcon icon={faPen} />update userinfo</button>
           </div>
-
+         
         </span>
+        <span className='outer3'>
+            {this.state.mode === 'update' ? (<UpdateMypage accessToken={this.props.accessToken} setName={this.setName} setWelcome={this.setWelcome} setImg={this.setImg} setMsg={this.setMsg} />) : ('')}
+          </span>
       </span>
 
 
