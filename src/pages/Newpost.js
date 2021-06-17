@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react';
 import './Newpost.css';
 import axios from 'axios';
-
+import initialImg from '../components/image/plant.png'
 
 function Newpost({ accessToken, isLogin }) {
   console.log('newpost isLogin:', isLogin)
   const [content, setContent] = useState('');
-  // const [image, setImage] = useState('');
   const [tag, setTag] = useState('');
   const [errorMessage, setErrorMesssage] = useState('');
   const [imgFile, setImgFile] = useState('');
-  const [imgUrl, setImgUrl] = useState('이미지');
+  const [imgUrl, setImgUrl] = useState(initialImg);
 
   function handleOnChange(e) {
-    e.preventDefault();
     setContent(e.target.value);
+    e.preventDefault();
   }
 
   function handleUploadImg(e) {
@@ -22,7 +21,6 @@ function Newpost({ accessToken, isLogin }) {
     const reader = new FileReader();
     const file = e.target.files[0];
     setImgFile(file);
-    // console.log(file);
     reader.onloadend = () => {
       setImgUrl(reader.result);
     };
@@ -36,24 +34,27 @@ function Newpost({ accessToken, isLogin }) {
     setTag(e.target.value);
   }
 
+  // 인풋 초기화 함수
+  function handleReset() {
+    setImgUrl(initialImg)
+    setContent('')
+    console.log('초기화 중입니다.')
+  }
+
   // new post에서는 img와 content를 업로드하고 백엔드로 
   function handlePostSubmit(e) {
-    // const formData = new FormData();
-    // formData.append('imgFile', file);
+    e.preventDefault();
     console.log('게시물 올리는 중')
 
-    if (!content) {
-      setErrorMesssage('내용을 입력하세요.')
+    if (!content || !imgUrl) {
+      setErrorMesssage('내용을 입력하세요')
       return;
     }
     else {
-      axios.post('http://localhost:4000/post/create', {
-        content: content,
-        image: imgUrl
-      }, {
+      axios.post('http://localhost:4000/post/create',
+        { content: content, image: imgUrl }, {
         headers: {
           authorization: accessToken,
-          // "Content-Type": "application/json",
         }, withCredentials: true
       })
         .then(res => {
@@ -61,39 +62,37 @@ function Newpost({ accessToken, isLogin }) {
         })
         .catch(err => console.log(err));
     }
+    handleReset();
   }
 
   return (
     <>
       <section className="newpost-page">
-        <h2>Create your plantingg branch<i className="fas fa-leaf"></i></h2>
+        <h2 className="page-title">Create your plantingg branch<i className="fas fa-leaf"></i></h2>
         <div className="newpost-container">
           <div className="newpost-image-container">
             <img className='profile_preview' src={imgUrl} />
-            <input className="newpost-fileupload" type='file' accept="image/*" onChange={handleUploadImg}></input>
-            {/* <button className="newpost-fileupload-fakebtn">Image upload</button> */}
-            <div className="selectbox-container">
-              <select onClick={handleChooseTag} className="select-box" value="4" multiple={true}>
-                <option className="select-box-items">herb</option>
-                <option className="select-box-items">tree</option>
-                <option className="select-box-items">flower</option>
-                <option className="select-box-items">edible</option>
-              </select>
-              <select onClick={handleChooseTag} className="select-box" value="4" multiple={true}>
-                <option className="select-box-items">cactus</option>
-                <option className="select-box-items">succulent</option>
-                <option className="select-box-items">scent</option>
-                <option className="select-box-items">etc</option>
-              </select>
+            <div className="input-select-container">
+              <input id="file" name="file" className="newpost-fileupload" type="file" accept="image/*" onChange={handleUploadImg}></input>
+              <label for="file" className="file-label"><i class="fas fa-download"></i></label>
+              <div className="newpost-selectbox-container">
+                <select onClick={handleChooseTag} className="newpost-select-box" >
+                  <option className="select-box-items" value="0">herb</option>
+                  <option className="select-box-items" value="1">tree</option>
+                  <option className="select-box-items" value="2">flower</option>
+                  <option className="select-box-items" value="3">edible</option>
+                  <option className="select-box-items" value="4">cactus</option>
+                  <option className="select-box-items" value="5">succulent</option>
+                  <option className="select-box-items" value="6">scent</option>
+                  <option className="select-box-items" value="7">etc</option>
+                </select>
+              </div>
             </div>
           </div >
           <div className="newpost-contentbox">
-            <textarea
-              className="newpost-content"
-              onChange={handleOnChange}
-              placeholder="내용을 입력하세요"
-            ></textarea>
+            <textarea value={content} className="newpost-content" onChange={handleOnChange} placeholder="Create your plantingg branch">하잇아</textarea>
             <button className="newpost-post-btn btn" onClick={handlePostSubmit}>Post</button>
+
           </div>
         </div>
       </section>
@@ -102,7 +101,6 @@ function Newpost({ accessToken, isLogin }) {
 }
 
 export default Newpost;
-
 
 
 // const setFile(e) {
@@ -134,20 +132,29 @@ export default Newpost;
 // }
 
 
-  // function handleUploadImg(e) {
-  //   e.preventDefault();
-  //   let reader = new FileReader();
-  //   const file = e.target.files[0];
-  //   console.log('file :', file)  // input file에서 파일 선택시 콘솔 찍힘
+// function handleUploadImg(e) {
+//   e.preventDefault();
+//   let reader = new FileReader();
+//   const file = e.target.files[0];
+//   console.log('file :', file)  // input file에서 파일 선택시 콘솔 찍힘
 
-  //   reader.onload = () => {
-  //     const base64 = reader.result;
-  //     if (base64) {
-  //       setImgUrl(base64.toString())
-  //       console.log('imgUrl 확인 : ', imgUrl)
-  //     }
-  //     console.log('reader : ', reader)  // input file에서 파일 선택시 콘솔 찍힘
-  //     setImgFile(file) // ImgFile(상태)에 file 을 넣어줌 => 이미지 문자열로 변환 전 쌩파일이름
-  //   }
-  //   reader.readAsDataURL(file)
-  // }
+//   reader.onload = () => {
+//     const base64 = reader.result;
+//     if (base64) {
+//       setImgUrl(base64.toString())
+//       console.log('imgUrl 확인 : ', imgUrl)
+//     }
+//     console.log('reader : ', reader)  // input file에서 파일 선택시 콘솔 찍힘
+//     setImgFile(file) // ImgFile(상태)에 file 을 넣어줌 => 이미지 문자열로 변환 전 쌩파일이름
+//   }
+//   reader.readAsDataURL(file)
+// }
+
+{/* <button className="newpost-post-btn btn" onClick={handlePostSubmit}>Post</button>
+{
+  (!content && !imgUrl) ? (<button className="newpost-post-btn btn" onClick={handlePostSubmit}>Post</button>)
+    : (<button className="newpost-post-btn btn" onClick={handleReset}>Post</button>)
+} */}
+
+{/* <button className="newpost-post-btn btn" onClick={handlePostSubmit}>Post</button>
+<button className="newpost-post-btn btn" onClick={handleReset}>Reset</button> */}

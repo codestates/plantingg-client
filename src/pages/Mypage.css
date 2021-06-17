@@ -2,7 +2,10 @@
       box-sizing: border-box;
       margin : 0;
     }
-    
+
+.mypage-container {
+  animation : fadeIn 1s ease-in-out;
+}
 .profileimg {
       margin : 3rem ;
       box-shadow:0px 0px 10px #000;
@@ -55,6 +58,15 @@
       padding:10px;
       position:absolute;
 }
+
+.outer3:last-child {
+      display:inline;
+      margin-top:5px;
+      margin-left:500px;
+      padding:10px;
+      position:absolute;
+}
+
 
 .profile{
       display:block;

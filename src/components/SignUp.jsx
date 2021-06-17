@@ -20,7 +20,7 @@ function SignUp({
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
   const [isSignup, setIsSignup] = useState(false);
 
   function handleUsername(e) {
@@ -35,6 +35,11 @@ function SignUp({
     setEmail(e.target.value);
   }
 
+  function onKeyPress(e) {
+    if (e.key === 'Enter') {
+      signUpRequestHandler();
+    }
+  }
   // 비밀번호 재확인 => 적용안됨..하
   function handlePasswordCheck(e) {
     setPasswordCheck(e.target.value);
@@ -44,10 +49,10 @@ function SignUp({
 
   function signUpRequestHandler() {
     if (password !== passwordCheck) {
-      setErrorMessage('비밀번호가 다릅니다.')
+      setErrorMessage('Check your password')
     }
     else if (!username || !email || !password) {
-      setErrorMessage("회원정보를 모두 입력하세요.");
+      setErrorMessage("Fill in all blanks.");
     } else {
       axios
         .post(
@@ -69,57 +74,65 @@ function SignUp({
         })
         .catch((err) => console.log(err));
     }
+
   }
 
   return (
     <div className="modal-container show-modal" onClick={openModal}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <h2 className="modal-header">회원 가입</h2>
+        <button onClick={closeModal} className="close">
+          <i className="fas fa-times"></i>
+        </button>
+        <h2 className="modal-header">Sign Up</h2>
         <div className="modal-info">
           <input
-            required
+            autoFocus
+            type="text"
             className="modal-input"
             placeholder="Username"
             onChange={handleUsername}
-            type="text"
+            onKeyPress={onKeyPress}
+            required
           />
           <input
-            required
+            type="email"
             className="modal-input"
             placeholder="Email"
             onChange={handleEmail}
-            type="email"
+            onKeyPress={onKeyPress}
+            required
           />
           <input
-            required
+            type="password"
             className="modal-input"
             placeholder="Password"
             onChange={handlePassword}
-            type="password"
+            onKeyPress={onKeyPress}
+
+            required
           />
           <input
-            required
-            className="modal-input"
-            placeholder="Confirm Password"
-            onChange={handlePasswordCheck}
             type="password"
+            className="modal-input"
+            placeholder="Password check"
+            onChange={handlePasswordCheck}
+            onKeyPress={onKeyPress}
+            required
           />
           <button className="signup-btn btn" onClick={signUpRequestHandler}>
-            회원 가입
+            Sign Up
           </button>
           {isSignup && <Signin />}
-
-          <button className="signup-social btn">
-            <img className="g-logo" src={google} />
-            구글계정으로 회원가입
-          </button>
+          {!errorMessage ? ('') : <div className="alert-box"><i className="fas fa-exclamation-circle"></i>{errorMessage}</div>}
         </div>
-        <button onClick={closeModal} className="close btn">
-          닫기
-        </button>
       </div>
     </div>
   );
 }
 
 export default SignUp;
+
+{/* <button className="signup-social btn">
+  <img className="g-logo" src={google} />
+  구글계정으로 회원가입
+</button> */}
