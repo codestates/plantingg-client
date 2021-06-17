@@ -41,13 +41,13 @@ class PostList extends Component {
 
 render(){
   return (
-    <>
+    <div className="postcontainer">
       {
         this.state.setDataList ? this.state.setDataList.map((item, index) => {
           return (
-            <div classname="postlistcontainer">
+            <div className="p"> 
+            <div className="postlistcontainer">
             <div className="postlist" key={index}>
-              <div>
               <div className="content">
                 <img src={item.image} className="postimg" />
               </div>
@@ -62,7 +62,7 @@ render(){
           )
         }) : ('You do not have any posts. Lets start posting with us!')
       }
-    </>
+    </div>
   )
     }
 }

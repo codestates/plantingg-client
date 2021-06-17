@@ -6,7 +6,7 @@
 .postimg {
       /* margin : 3rem ; */
       box-shadow:0px 0px 2px #000;
-      width : 20rem;
+      width : 30rem;
       height : 20rem;
       border-radius:5%;
 } 
@@ -35,6 +35,7 @@
       vertical-align: 10px;
       font-weight: 350;
       color:grey;
+      border-radius: 2px solid black;
 }
 
 /* input[type="file"] {
@@ -52,14 +53,24 @@ label{
 }
 .postlist{
       background-color:transparent;
-      display:inline-flex;
+      display:flex;
       align-items: center;
-      margin:5px;
-      padding:5px;
-      width: 200px;
-      height: 150px;
+      margin:15px;
+      width:500px;
+      height:350px;
+      padding:15px;
 }
 
 .postlistcontainer{
-     background-color: black;
+     background-color: rgb(240, 240, 240);
+     width:1000px;
+     height:350px;
+     border-radius:5%
+}
+
+.postcontainer{
+      background-image: url('../components/image/Download\ premium\ illustration\ of\ Branches\ of\ rose\ pink\ leaves\ with\ green.jpeg') ;
+      background-position: center;
+      /* background-repeat: no-repeat; */
+      background-color: rgba( 255, 255, 255, 0.5 )
 }

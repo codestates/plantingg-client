@@ -48,9 +48,9 @@ axios.defaults.withCredentials = true;
         <div className="container">
           <div className="newpost-image-container">
             <img className='preview' src={imgUrl} />
-            <input className="newpost" name="file" id="file" type="file" accept="image/*" onChange={handleUploadImg} /><label for="file"><i class="fas fa-upload"></i>Find file</label>
+            <input className="updatepost" name="file" id="file" type="file" accept="image/*" onChange={handleUploadImg} /><label for="file"><i class="fas fa-upload"></i>Find file</label>
           </div >
-          <div className="contentbox">
+          <div className="updatebox">
             <input onChange={handleOnChangename} className="usernameprofile" placeholder="Update your username" ></input>
             <input onChange={handleOnChange} className="contentprofile" placeholder="Update your StatusMsg"
             ></input>
