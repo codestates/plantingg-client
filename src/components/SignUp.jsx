@@ -56,7 +56,7 @@ function SignUp({
     } else {
       axios
         .post(
-          `http://localhost:4000/auth/signup`,
+          `http://plantingg.ml/auth/signup`,
           { username: username, email: email, password: password },
           {
             headers: { "Content-Type": "application/json" },

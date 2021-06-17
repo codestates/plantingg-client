@@ -52,7 +52,7 @@ function SignIn({
       console.log("hihi");
       axios
         .post(
-          `http://localhost:4000/auth/signin`,
+          `http://plantingg.ml/auth/signin`,
           { email: email, password: password },
           {
             headers: {
