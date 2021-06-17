@@ -27,7 +27,7 @@
 ---
 
 ## 🔨 Stack
-<img width="818" alt="사용스택" src="https://user-images.githubusercontent.com/78947950/121187802-65ea2400-c8a3-11eb-8bfa-0c431e4f4e96.png">
+<img width="746" alt="스크린샷 2021-06-18 오전 7 36 53" src="https://user-images.githubusercontent.com/78947950/122480588-183e8b80-d008-11eb-9ce8-9a09ed6a6140.png">
 
 ---
 
