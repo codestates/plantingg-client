@@ -4,19 +4,18 @@
     }
     
 .postimg {
-      margin : 3rem ;
+      /* margin : 3rem ; */
       box-shadow:0px 0px 2px #000;
-      width : 15rem;
-      height : 15rem;
+      width : 20rem;
+      height : 20rem;
       border-radius:5%;
 } 
 
 .content{
       display:inline;
-      margin-top:50px;
-      padding:10px;
+      margin-top:2px;
+      padding:2px;
       position:relative;
-      border-radius: 2px solid black;
       justify-content: center;
 }
 
@@ -36,13 +35,31 @@
       vertical-align: 10px;
       font-weight: 350;
       color:grey;
-      border-radius: 2px solid black;
 }
 
-.post{
-      border-radius: 10px solid black;
-      display:flex;
+/* input[type="file"] {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 1;
+      overflow: hidden;
+      position: absolute; 
+      z-index: -1;
+      cursor: pointer;
+} */
+  
+label{
+      cursor:pointer;
+}
+.postlist{
+      background-color:transparent;
+      display:inline-flex;
       align-items: center;
-      margin:10px;
-      padding:10px;
+      margin:5px;
+      padding:5px;
+      width: 200px;
+      height: 150px;
+}
+
+.postlistcontainer{
+     background-color: black;
 }

@@ -12,7 +12,6 @@ import './PostList.css'
 
 // function PostList({accessToken}){
 // const [dataList, setDataList] = useState([]);
-
 class PostList extends Component {
 
   constructor(props) {
@@ -20,9 +19,7 @@ class PostList extends Component {
     this.state = {
       setDataList:''
     }
-
   }
-
 
   componentDidMount() {
     axios.get('http://localhost:4000/post/read',
@@ -38,17 +35,9 @@ class PostList extends Component {
       console.log(`thisisres.data`,res.data)
       this.setState({
         setDataList:res.data
-
       })
     })
   }
-
-
-  // useEffect(() => {
-  //   axios.get("http://plantingg.com/post/list").then((res) => {
-  //     setview(res.data);
-  //   });
-  // }, [viewpost]);
 
 render(){
   return (
@@ -56,18 +45,19 @@ render(){
       {
         this.state.setDataList ? this.state.setDataList.map((item, index) => {
           return (
-            <div className="post" key={index}>
-
+            <div classname="postlistcontainer">
+            <div className="postlist" key={index}>
+              <div>
               <div className="content">
                 <img src={item.image} className="postimg" />
               </div>
 
               <div className="content">
                 <div className="text">{item.content}</div>
-                <div className="text">{item.createDate}</div>
-                <div className="text">{item.tag}</div>
+                <div className="text">{item.updatedAt}</div>
               </div>
-
+            </div>
+            </div>
             </div>
           )
         }) : ('You do not have any posts. Lets start posting with us!')

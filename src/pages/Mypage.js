@@ -9,7 +9,7 @@ import './Mypage.css'
 import axios from 'axios'
 import React from 'react'
 import Nav from '../components/Nav'
-import imgA from '../components/image/seokjin.png'
+import imgA from '../components/image/profile.png'
 import imgB from '../components/image/t1.png'
 import imgC from '../components/image/t2.png'
 import imgD from '../components/image/t3.png'
@@ -50,26 +50,26 @@ class Mypage extends React.Component {
     });
   };
 
-  setWelcome = (msg) =>{
+  setWelcome = (msg) => {
     this.setState({
-      mode:"welcome",
+      mode: "welcome",
     })
   }
-  setImg = (img)=>{
+  setImg = (img) => {
     this.setState({
-      profileImage:img
-    })
-  }
-
-  setMsg = (msg) =>{
-    this.setState({
-      statusMessage:msg
+      profileImage: img
     })
   }
 
-  setName = (name) =>{
+  setMsg = (msg) => {
     this.setState({
-      username:name
+      statusMessage: msg
+    })
+  }
+
+  setName = (name) => {
+    this.setState({
+      username: name
     })
   }
 
@@ -93,9 +93,11 @@ class Mypage extends React.Component {
           <div>
             <button className="btn-userinfo" onClick={this.setmode}>
               <FontAwesomeIcon icon={faPen} />update userinfo</button>
-            {this.state.mode === 'update' ? (<UpdateMypage accessToken={this.props.accessToken} setName={this.setName} setWelcome={this.setWelcome} setImg={this.setImg} setMsg={this.setMsg} />) : ('')}
           </div>
 
+        </span>
+        <span className='outer3'>
+          {this.state.mode === 'update' ? (<UpdateMypage accessToken={this.props.accessToken} setName={this.setName} setWelcome={this.setWelcome} setImg={this.setImg} setMsg={this.setMsg} />) : ('')}
         </span>
       </span>
 
@@ -105,7 +107,7 @@ class Mypage extends React.Component {
           <span className='box'><img className="memberimg" src={imgB} /><div className="membertext">{'Total Post Count'}</div><span className="membernbr">{'5'}</span></span>
           <span className='box'><img className="memberimg" src={imgC} /><div className="membertext">{'Your Membership'}</div><span className="membernbr">{'1'}</span></span>
           <span className='box'><img className="memberimg" src={imgD} /><div className="membertext">{'Days after Join us'}</div><span className="membernbr">
-            {this.props.userinfo.createdAt.slice(8,10)}</span></span>
+            {this.props.userinfo.createdAt.slice(8, 10)}</span></span>
         </div>
       </div>
 
