@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Newpost.css';
 import axios from 'axios';
+import initialImg from '../components/image/plant.png'
 
 function Newpost({ accessToken, isLogin }) {
   console.log('newpost isLogin:', isLogin)
@@ -8,11 +9,11 @@ function Newpost({ accessToken, isLogin }) {
   const [tag, setTag] = useState('');
   const [errorMessage, setErrorMesssage] = useState('');
   const [imgFile, setImgFile] = useState('');
-  const [imgUrl, setImgUrl] = useState('이미지');
+  const [imgUrl, setImgUrl] = useState(initialImg);
 
   function handleOnChange(e) {
-    e.preventDefault();
     setContent(e.target.value);
+    e.preventDefault();
   }
 
   function handleUploadImg(e) {
@@ -33,8 +34,16 @@ function Newpost({ accessToken, isLogin }) {
     setTag(e.target.value);
   }
 
+  // 인풋 초기화 함수
+  function handleReset() {
+    setImgUrl(initialImg)
+    setContent('')
+    console.log('초기화 중입니다.')
+  }
+
   // new post에서는 img와 content를 업로드하고 백엔드로 
   function handlePostSubmit(e) {
+    e.preventDefault();
     console.log('게시물 올리는 중')
 
     if (!content || !imgUrl) {
@@ -53,6 +62,7 @@ function Newpost({ accessToken, isLogin }) {
         })
         .catch(err => console.log(err));
     }
+    handleReset();
   }
 
   return (
@@ -80,8 +90,9 @@ function Newpost({ accessToken, isLogin }) {
             </div>
           </div >
           <div className="newpost-contentbox">
-            <textarea className="newpost-content" onChange={handleOnChange} placeholder="Create your plantingg branch "></textarea>
+            <textarea value={content} className="newpost-content" onChange={handleOnChange} placeholder="Create your plantingg branch">하잇아</textarea>
             <button className="newpost-post-btn btn" onClick={handlePostSubmit}>Post</button>
+
           </div>
         </div>
       </section>
@@ -121,20 +132,29 @@ export default Newpost;
 // }
 
 
-  // function handleUploadImg(e) {
-  //   e.preventDefault();
-  //   let reader = new FileReader();
-  //   const file = e.target.files[0];
-  //   console.log('file :', file)  // input file에서 파일 선택시 콘솔 찍힘
+// function handleUploadImg(e) {
+//   e.preventDefault();
+//   let reader = new FileReader();
+//   const file = e.target.files[0];
+//   console.log('file :', file)  // input file에서 파일 선택시 콘솔 찍힘
 
-  //   reader.onload = () => {
-  //     const base64 = reader.result;
-  //     if (base64) {
-  //       setImgUrl(base64.toString())
-  //       console.log('imgUrl 확인 : ', imgUrl)
-  //     }
-  //     console.log('reader : ', reader)  // input file에서 파일 선택시 콘솔 찍힘
-  //     setImgFile(file) // ImgFile(상태)에 file 을 넣어줌 => 이미지 문자열로 변환 전 쌩파일이름
-  //   }
-  //   reader.readAsDataURL(file)
-  // }
+//   reader.onload = () => {
+//     const base64 = reader.result;
+//     if (base64) {
+//       setImgUrl(base64.toString())
+//       console.log('imgUrl 확인 : ', imgUrl)
+//     }
+//     console.log('reader : ', reader)  // input file에서 파일 선택시 콘솔 찍힘
+//     setImgFile(file) // ImgFile(상태)에 file 을 넣어줌 => 이미지 문자열로 변환 전 쌩파일이름
+//   }
+//   reader.readAsDataURL(file)
+// }
+
+{/* <button className="newpost-post-btn btn" onClick={handlePostSubmit}>Post</button>
+{
+  (!content && !imgUrl) ? (<button className="newpost-post-btn btn" onClick={handlePostSubmit}>Post</button>)
+    : (<button className="newpost-post-btn btn" onClick={handleReset}>Post</button>)
+} */}
+
+{/* <button className="newpost-post-btn btn" onClick={handlePostSubmit}>Post</button>
+<button className="newpost-post-btn btn" onClick={handleReset}>Reset</button> */}
