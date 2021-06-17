@@ -7,7 +7,7 @@
   border-top: 1px solid rgba(0, 0, 0, 0.09);
 }
 
-section div, 
+.footer-content, 
 .icon{
   margin :1.3px 0;
   color : rgba(0, 0, 0, 0.6);
@@ -34,6 +34,6 @@ section div,
   font-size : 14px;
 }
 
-.container {
+.footer-container {
   text-align: center;
 }

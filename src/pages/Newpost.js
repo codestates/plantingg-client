@@ -74,9 +74,9 @@ function Newpost({ accessToken, isLogin }) {
             <img className='profile_preview' src={imgUrl} />
             <div className="input-select-container">
               <input id="file" name="file" className="newpost-fileupload" type="file" accept="image/*" onChange={handleUploadImg}></input>
-              <label for="file"><i class="fas fa-download"></i></label>
-              <div className="selectbox-container">
-                <select onClick={handleChooseTag} className="select-box" >
+              <label for="file" className="file-label"><i class="fas fa-download"></i></label>
+              <div className="newpost-selectbox-container">
+                <select onClick={handleChooseTag} className="newpost-select-box" >
                   <option className="select-box-items" value="0">herb</option>
                   <option className="select-box-items" value="1">tree</option>
                   <option className="select-box-items" value="2">flower</option>
