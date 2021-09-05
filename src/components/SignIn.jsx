@@ -52,7 +52,7 @@ function SignIn({
       console.log("hihi");
       axios
         .post(
-          `http://plantingg.ml/auth/signin`,
+          `http://localhost:4000/auth/signin`,
           { email: email, password: password },
           {
             headers: {
@@ -87,7 +87,7 @@ function SignIn({
           <i className="fas fa-times"></i>
         </button>
         {goToSignup && <SignUp signUp={goToSignup} />}
-        <h2 className="modal-header">Sign In </h2>
+        <h2 className="modal-header">Sign In</h2>
         <div className="modal-info">
           <input
             autoFocus

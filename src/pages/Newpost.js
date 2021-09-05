@@ -51,7 +51,7 @@ function Newpost({ accessToken, isLogin }) {
       return;
     }
     else {
-      axios.post('http://plantingg.ml/post/create',
+      axios.post('http://localhost:4000/post/create',
         { content: content, image: imgUrl }, {
         headers: {
           authorization: accessToken,
